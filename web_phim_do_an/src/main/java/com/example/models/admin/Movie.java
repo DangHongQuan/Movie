@@ -1,6 +1,9 @@
 package com.example.models.admin;
 
+import java.io.File;
 import java.sql.Date;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
