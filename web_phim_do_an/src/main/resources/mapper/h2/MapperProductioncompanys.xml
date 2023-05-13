@@ -1,0 +1,21 @@
+<!-- movie_mapper.xml -->
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.response.admin.AdminProductioncompanysRepository">
+
+    <resultMap id="productioncompanysResultMap" type="com.example.models.admin.Productioncompanys">
+        <id property="pcId" column="PRODUCTION_COMPANY_ID_" />
+        <result property="logoPath" column="LOGO_PATH_" />
+        <result property="name" column="NAME_" />
+        <result property="originCountry" column="ORIGIN_COUNTRY_" />
+    </resultMap>
+
+    <insert id="insertProductionCompany" parameterType="com.example.models.admin.Productioncompanys">
+        INSERT INTO PRODUCTIONCOMPANYS (LOGO_PATH_, NAME_, ORIGIN_COUNTRY_)
+        VALUES (#{logoPath}, #{name}, #{originCountry})
+    </insert>
+    
+</mapper>

@@ -42,6 +42,43 @@
     select * from movies
     </select>
 
+    <delete id="deleteMovie">
+    delete from movies where movie_id = #{movie_id} 
+    </delete>
+
+    <select id="findMovie" resultMap="movieResultMap">
+    select * from movies where movie_id = #{movie_id} 
+    </select>
+
+   
+    <update id="updateMovie" parameterType="com.example.models.admin.Movie">
+  UPDATE movies
+  SET
+    adult = #{adult},
+    backdrop_path = #{backdropPath},
+    belongs_to_collection = #{belongsToCollection},
+    budget = #{budget},
+   homePage = #{homePage},
+    <!-- homeage = #{homePage}, -->
+    imdb_id = #{imdbId},
+    original_language = #{originalLanguage},
+    original_title = #{originalTitle},
+    overview = #{overview},
+    popularity = #{popularity},
+    poster_path = #{posterPath},
+    release_date = #{releaseDate},
+    revenue = #{revenue},
+    runtime = #{runtime},
+    status = #{status},
+    tagline = #{tagline},
+    title = #{title},
+    video = #{video},
+    vote_average = #{voteAverage},
+    vote_count = #{voteCount}
+  WHERE movie_id = #{movieId}
+</update>
+
+
    
 
     <!-- Add more SQL queries as needed -->

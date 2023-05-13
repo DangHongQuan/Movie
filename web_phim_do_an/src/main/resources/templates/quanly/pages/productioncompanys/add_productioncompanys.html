@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{quanly/layouts/layouts}">
+  <head>
+    <title>
+      Thêm Mới Công Ty
+    </title>
+  </head>
+  <body>
+    <div layout:fragment="content">
+     
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <form method="post" 
+           
+            action="/admin/adminproductioncompanys"
+            th:object="${productionCompany}"
+            class="form-login">
+              <h2 class="text-center text-dark">  Thêm Mới Công Ty</h2>
+              <label class="form-lable text-dark">Thêm Mới Logo (URL tạm thời)
+                <span class="text-danger">(*)</span> </label>
+            <input type="text" class="form-control border border-dark ps-4"  th:field="*{logoPath}"
+                placeholder="Nhập Tên Thể Loại"/>
+                <label class="form-lable text-dark">Thêm Mới Tên
+                    <span class="text-danger">(*)</span> </label>
+                <input type="text" class="form-control border border-dark ps-4"  th:field="*{name}"
+                    placeholder="Nhập Tên Thể Loại"/>
+                    <label class="form-lable text-dark">Thêm Mới Nước 
+                        <span class="text-danger">(*)</span> </label>
+                    <input type="text" class="form-control border border-dark ps-4"  th:field="*{originCountry}"
+                        placeholder="Nhập Tên Thể Loại"/>
+             
+              <div class="text-center mt-5">
+                <input type="submit" class="btn btn-success " value="Thêm
+                  Mới"/>
+              </div> 
+
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </body>
+</html>

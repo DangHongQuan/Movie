@@ -1,10 +1,200 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{quanly/layouts/layouts}">
+  <head>
+    <title>
+     Edit Movie
+    </title>
+  </head>
+  <body>
+    <div layout:fragment="content">
+        <form
+        method="post"
+        action="/admin/update"
+        th:object="${movie}"
+        class="form-login"
+      >
+      <input type="text" hidden th:field="*{movieId}">
+      <h2 class="text-center text-dark">Edit Movie</h2>
+      <label class="form-lable text-dark">Tiêu Đề gốc(original_title )
+        <span class="text-danger">(*)</span> </label>
+      <input type="text" class="form-control border border-dark ps-4"  th:field="*{originalTitle}"
+        placeholder="Nhập Tên Của Bộ Phim Ra Mắt"/>
+      <div class="row mb-1">
+        <div class="col-lg-8">
+          <label class="form-label text-dark">Adult</label>
+          <div class="pt-3 border border-dark rounded "  >
+            <div class="d-flex" >
+              <div class="form-check mr-4">
+                <input class="form-check-input" type="radio"   th:field="*{adult}"
+                  name="flexRadioDefault" id="flexRadioDefault1" value="0">
+                <label class="form-check-label" for="flexRadioDefault1" >
+                  Nói Không Với 18+
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio"  th:field="*{adult}"
+                  name="flexRadioDefault" id="flexRadioDefault2" value="1"
+                  checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Chứa Nội Dung 18+
+                </label>
+              </div>
+            </div>
+          </div>
 
-</body>
+
+        </div>
+        <div class="col-lg-4">
+          <label class="text-dark form-lable">Chọn Thể Loại Phim <span class="text-danger">(*)</span> </label>
+         
+          <select class="form-select form-select-lg mb-3 border border-dark" name="belongsToCollection">
+            <option selected>---Thể Loại Phim---</option>
+            <option th:each="data : ${genresList}" th:value="${data.name}" th:text="${data.name}" th:selected="${data.genreId == movie.belongsToCollection}"></option>
+          </select>
+          
+          
+          
+          
+          
+        </div>
+        
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-lg-6">
+          <label class="form-label text-dark">Ảnh Nền (backdrop_path):
+            <span class="text-danger">(*)</span> </label>
+          <input type="file" class="form-control border border-dark" />
+        </div>
+        <div class="col-lg-6">
+          <label class="form-label text-dark">Ảnh poster (poster_path):
+            <span class="text-danger">(*)</span> </label>
+          <input type="file" class="form-control border border-dark" />
+        </div>
+      </div>
+
+      <label class="form-label text-dark">Mô Tả(overview) <span
+          class="text-danger">(*)</span> </label>
+      <textarea   rows="8" style="width: 100%;" name="overview" th:value="${movie.overview}"></textarea>
+
+      <div class="row mb-2">
+        <div class="col-lg-6">
+          <label class="form-label text-dark">Tiêu Đề Phim (title) <span
+              class="text-danger">(*)</span> </label>
+          <input type="text" class="form-control border border-dark
+            ps-4" placeholder="Tiêu Đề Của Bộ Phim"  th:field="*{title}"/>
+        </div>
+        <div class="col-lg-6">
+          <label class="form-label text-dark">Khẩu Hiệu (tagline) <span
+              class="text-danger">(*)</span> </label>
+          <input type="text" class="form-control border border-dark
+            ps-4" th:field="*{tagline}" placeholder="Khẩu Hiệu Của Bộ Phim là gì ?"/>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-lg-4">
+          <label class="form-label text-dark">Thời Lượng Phim (runtime)
+            <span class="text-danger">(*)</span> </label>
+          <input type="number" class="form-control border border-dark 
+            text-center" th:field="*{runtime}" placeholder="Thời Lượng Tính Bằng Phút"/>
+        </div>
+        <div class="col-lg-4">
+          <label class="form-label text-dark">Điểm TB Đánh Giá
+            (vote_average ) </label>
+          <input type="text" th:field="*{voteAverage}" class="form-control border border-dark
+            text-center" placeholder="Điểm Đánh Giá Bởi Người Dùng"/>
+        </div>
+        <div class="col-lg-4">
+          <label class="form-label text-dark">Số Lượng Phiếu Bầu
+            (vote_count ) </label>
+          <input type="number" class="form-control border border-dark
+            text-center" th:field="*{voteCount}" placeholder="Số Phiếu Bầu Của Người Dùng"/>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-lg-4">
+          <label class="form-label text-dark">Tổng Số Tiền SX Phim
+            (budget) </label>
+          <input type="text" th:field="*{budget}" class="form-control border border-dark
+            text-center" placeholder="Số Tiền Chi Ra Để Sản Xuất Phim"/>
+        </div>
+        <div class="col-lg-4">
+          <label class="form-label text-dark">Ngày Phát Hành
+            (release_date) </label>
+          <input type="date" class="form-control border border-dark
+            text-center" name="releaseDate" th:value="${movie.releaseDate}"/>
+        </div>
+      
+        <div class="col-lg-4">
+          <label class="form-label text-dark">Doanh Thu (revenue)
+          </label>
+          <input type="text" th:field="*{revenue}" class="form-control border border-dark
+            text-center" placeholder="Doanh Thu Sau Khi Phát Hành
+            Phim"/>
+        </div>
+      </div>
+      <label class="form-lable text-dark">Địa Chỉ URL(homepage) <span
+          class="text-danger">(*)</span> </label>
+      <input th:field="*{homePage}" type="text" class="form-control border border-dark ps-4"
+        placeholder="Địa Chỉ URL Của Trang Chủ Bộ Phim"/>
+      <div class="row mb-2">
+        <div class="col-lg-4">
+          <label class="form-label text-dark">Ngôn Ngữ Gốc
+            (original_language) </label>
+          <input type="text" th:field="*{originalLanguage}" class="form-control border border-dark
+            text-center" placeholder="Ngôn Ngữ Gốc Của Bộ Phim"/>
+        </div>
+        <div class="col-lg-4">
+          <label class="form-label text-dark">Chỉ Số Đo Lường
+            (popularity) </label>
+          <input type="text" th:field="*{popularity}" class="form-control border border-dark
+            text-center" placeholder="Chỉ Số Đo Lường %"/>
+        </div>
+        <div class="col-lg-4">
+          <label class="form-label text-dark">Định Danh(imdb_id )
+          </label>
+          <input type="number" th:field="*{imdbId}" class="form-control border border-dark
+            text-center" placeholder="Định Danh Trên Trang Web IMDB"/>
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-lg-6">
+          <label class="form-label text-dark">Trạng Thái (status) <span
+              class="text-danger">(*)</span> </label>
+          <input type="text" th:field="*{status}" class="form-control border border-dark
+            ps-4" placeholder="Đã Hoàn Thành, Đang Sản Xuất,.v.v.."/>
+        </div>
+        <div class="col-lg-6">
+          <label class="form-label text-dark">Video Trailer (video)
+            <span class="text-danger">(*)</span> </label>
+          <div class="pt-2 border border-dark rounded ">
+            <div class="d-flex">
+              <div class="form-check mr-4">
+                <input class="form-check-input" type="radio" th:field="*{video}" value="0"
+                  name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Có Trailer
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" th:field="*{video}" value="1"
+                  name="flexRadioDefault" id="flexRadioDefault2"
+                  checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Không Có Trailer
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <input type="submit" class="btn btn-success " value="Thêm
+          Movie"/>
+      </div>
+      </form>
+  </body>
 </html>

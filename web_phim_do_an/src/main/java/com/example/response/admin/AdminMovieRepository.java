@@ -13,6 +13,14 @@ public interface AdminMovieRepository {
 
     List<Movie> listMovie();
 
+    void deleteMovie(Integer id);
+
+    Movie findMovie(Integer id);
+
+    void updateMovie(Movie movie);
+
+    
+
    
     
 }

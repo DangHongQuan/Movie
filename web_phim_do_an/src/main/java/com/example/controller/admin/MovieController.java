@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -63,6 +64,26 @@ public class MovieController {
 		List<Movie> movies = adminMovieService.listMovie();
 		model.addAttribute("movie", movies);
 		return "quanly/pages/movies/list_movie";
+	}
+
+	@GetMapping(value = "delete/{id}")
+	public String deleteMovie(@PathVariable("id") Integer id, Model model) {
+		adminMovieService.deleteMovie(id);
+		return "redirect:/admin/listmovie";
+	}
+
+	@GetMapping(value = "edit/{id}")
+	public String editMovie(@PathVariable("id") Integer id, Model model){
+		Movie movie = adminMovieService.findMovieId(id);
+		model.addAttribute("movie", movie);
+		return "quanly/pages/movies/edit_movie";
+	}
+
+	@PostMapping(value = "/update")
+	public String updateMovie(@ModelAttribute("udMovie") Movie movie){
+		adminMovieService.updateMovie(movie);
+		return "redirect:/admin/listmovie";
+
 	}
 
 

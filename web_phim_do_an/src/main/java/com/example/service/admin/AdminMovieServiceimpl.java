@@ -23,5 +23,20 @@ public class AdminMovieServiceimpl implements AdminMovieService {
     public List<Movie> listMovie() {
        return adminMovieRepository.listMovie();
     }
+
+   @Override
+   public void deleteMovie(Integer id) {
+     adminMovieRepository.deleteMovie(id);
+   }
+
+   @Override
+   public Movie findMovieId(Integer id) {
+     return adminMovieRepository.findMovie(id);
+   }
+
+   @Override
+   public void updateMovie(Movie movie) {
+    adminMovieRepository.updateMovie(movie);
+   }
     
 }
