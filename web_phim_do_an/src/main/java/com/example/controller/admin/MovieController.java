@@ -58,6 +58,14 @@ public class MovieController {
 	}
 
 
+	@GetMapping("/listmovie")
+	public String getAllListMovie(Model model) {
+		List<Movie> movies = adminMovieService.listMovie();
+		model.addAttribute("movie", movies);
+		return "quanly/pages/movies/list_movie";
+	}
+
+
 
 	
 	

@@ -1,5 +1,7 @@
 package com.example.service.admin;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,11 @@ public class AdminMovieServiceimpl implements AdminMovieService {
     @Override
     public void insertMovies(Movie movie) {
        adminMovieRepository.insertMovies(movie);
+    }
+
+    @Override
+    public List<Movie> listMovie() {
+       return adminMovieRepository.listMovie();
     }
     
 }

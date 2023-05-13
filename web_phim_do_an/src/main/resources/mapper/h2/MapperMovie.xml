@@ -38,6 +38,10 @@
             #{revenue}, #{runtime}, #{status}, #{tagline}, #{title}, #{video}, #{voteAverage}, #{voteCount})
     </insert>
 
+    <select id="listMovie" resultMap="movieResultMap">
+    select * from movies
+    </select>
+
    
 
     <!-- Add more SQL queries as needed -->

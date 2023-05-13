@@ -1,10 +1,57 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{quanly/layouts/layouts}">
+  <head>
+    <title>
+      Thêm mới Phim
+    </title>
+  </head>
+  <body>
+    <div layout:fragment="content">
+        <table class="table table-bordered table-hover table-responsive-sm">
+            <thead>
+                <th>No.</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                
+            </thead>
+            <tbody>
+                <tr th:each="item:${movie}">
+                    <td th:text="${item.movieId}"></td>
+                    <td th:text="${item.adult}"></td>
+                    <td th:text="${item.backdropPath}"></td>
+                    <td th:text="${item.belongsToCollection}"></td>
+                    <td th:text="${item.budget}"></td>
+                    <td th:text="${item.homePage}"></td>
+                    <td th:text="${item.imdbId}"></td>
+                    <td th:text="${item.originalLanguage}"></td>
+                    <td th:text="${item.originalTitle}"></td>
+                    <td th:text="${item.overview}"></td>
+                    <td th:text="${item.popularity}"></td>
+                    <td th:text="${item.posterPath}"></td>
+                    <td th:text="${item.releaseDate}"></td>
+                    <td th:text="${item.revenue}"></td>
+                    <td th:text="${item.runtime}"></td>
+                    <td th:text="${item.status}"></td>
+                    <td th:text="${item.tagline}"></td>
+                    <td th:text="${item.title}"></td>
+                    <td th:text="${item.video}"></td>
+                    <td th:text="${item.voteAverage}"></td>
+                    <td th:text="${item.voteCount}"></td>
+                    
 
-</body>
+                    
+                    
+                    
+                </tr>
+            </tbody>
+        </table>
+    
+
+
+    </div>
+  </body>
 </html>
