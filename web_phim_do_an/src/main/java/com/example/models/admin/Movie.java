@@ -1,10 +1,6 @@
 package com.example.models.admin;
 
-import java.io.File;
 import java.sql.Date;
-
-import org.springframework.web.multipart.MultipartFile;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,4 +30,5 @@ public class Movie {
     private Boolean video;
     private float voteAverage;
     private Integer voteCount;
+
 }

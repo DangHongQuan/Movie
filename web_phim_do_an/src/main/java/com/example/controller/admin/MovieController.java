@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,16 +21,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.util.FileSystemUtils;
 
-
+import com.example.models.Genre;
 import com.example.models.admin.Movie;
+import com.example.service.admin.AdminGenresService;
 import com.example.service.admin.AdminMovieService;
 
-import ch.qos.logback.core.util.FileUtil;
+
 
 @Controller
 @RequestMapping("/admin")
 public class MovieController {
 
+	@Autowired
+	private AdminGenresService adminGenresService;
 
 	@Autowired
 	private AdminMovieService adminMovieService;
@@ -40,13 +44,15 @@ public class MovieController {
 
 	@GetMapping("/adminmovie")
 	public String addAuthor(Model model) {
+		List<Genre> genresList = adminGenresService.getAllGenre();
+		model.addAttribute("genresList", genresList);
 		Movie movie = new Movie();
 		model.addAttribute("movie", movie);
 		return "quanly/pages/movies/add_movie";
 	}
 	
 	@PostMapping("/adminmovie")
-	public String savePhoneBook(@ModelAttribute("author") Movie movie) {
+	public String savePhoneBook(@ModelAttribute("movie") Movie movie) {
 		adminMovieService.insertMovies(movie);
 		return "redirect:/admin/adminmovie";
 	}

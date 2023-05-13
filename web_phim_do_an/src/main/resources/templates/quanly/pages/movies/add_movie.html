@@ -9,6 +9,7 @@
   </head>
   <body>
     <div layout:fragment="content">
+     
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-8">
@@ -49,12 +50,23 @@
                 </div>
                 <div class="col-lg-4">
                   <label class="text-dark form-lable">Chọn Thể Loại Phim <span class="text-danger">(*)</span> </label>
-                  <select class="form-select form-select-lg mb-3 border border-dark" name="belongsToCollection"  th:value="${movie.belongsToCollection}"  aria-label=".form-select-lg example">
+                  <!-- <select class="form-select form-select-lg mb-3 border border-dark" name="belongsToCollection"  th:value="${movie.belongsToCollection}"  aria-label=".form-select-lg example">
                     <option selected>---Thể Loại Phim---</option>
                     <option  value="tinhcam">Tình Cảm</option>
                     <option value="bomtan">Bom Tấn</option>
                     <option value="kinhdi">Kinh Dị</option>
+                  </select> -->
+                  <!-- <select class="form-select form-select-lg mb-3 border border-dark">
+                    <option th:each="data : ${genresList}" th:value="${data.genreId}" th:text="${data.name}"  name="belongsToCollection"  th:value="${movie.belongsToCollection}"></option>
+                  </select> -->
+                  <select class="form-select form-select-lg mb-3 border border-dark" name="belongsToCollection">
+                    <option selected>---Thể Loại Phim---</option>
+                    <option th:each="data : ${genresList}" th:value="${data.name}" th:text="${data.name}" th:selected="${data.genreId == movie.belongsToCollection}"></option>
                   </select>
+                  
+                  
+                  
+                  
                   
                 </div>
                 
