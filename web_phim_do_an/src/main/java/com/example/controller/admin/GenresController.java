@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.models.Genre;
-import com.example.service.admin.AdminGenresService;
+import com.example.service.admin.Genres.AdminGenresService;
 
 
 @Controller

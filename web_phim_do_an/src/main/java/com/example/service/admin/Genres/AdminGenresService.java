@@ -1,4 +1,4 @@
-package com.example.service.admin;
+package com.example.service.admin.Genres;
 
 import java.util.List;
 

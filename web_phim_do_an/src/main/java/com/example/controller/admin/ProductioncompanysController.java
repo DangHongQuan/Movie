@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.models.ProductionCompany;
-import com.example.service.admin.AdminProductioncompanysService;
+import com.example.service.admin.Productioncompanys.AdminProductioncompanysService;
 
 @RequestMapping(value = "/admin")
 @Controller

@@ -1,4 +1,4 @@
-package com.example.service.admin;
+package com.example.service.admin.Productioncompanys;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

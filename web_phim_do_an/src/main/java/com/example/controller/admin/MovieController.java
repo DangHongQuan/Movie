@@ -24,8 +24,8 @@ import org.springframework.util.FileSystemUtils;
 
 import com.example.models.Genre;
 import com.example.models.admin.Movie;
-import com.example.service.admin.AdminGenresService;
-import com.example.service.admin.AdminMovieService;
+import com.example.service.admin.Genres.AdminGenresService;
+import com.example.service.admin.Movie.AdminMovieService;
 
 
 
