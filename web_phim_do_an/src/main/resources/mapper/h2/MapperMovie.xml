@@ -29,14 +29,21 @@
         <result property="voteCount" column="vote_count" />
     </resultMap>
 
-    <insert id="insertMovies" parameterType="com.example.models.admin.Movie">
-        INSERT INTO movies (movie_id, adult, backdrop_path, belongs_to_collection, budget, homepage, imdb_id,
-            original_language, original_title, overview, popularity, poster_path, release_date, revenue, runtime,
-            status, tagline, title, video, vote_average, vote_count)
-        VALUES (#{movieId}, #{adult}, #{backdropPath}, #{belongsToCollection}, #{budget}, #{homePage}, #{imdbId},
-            #{originalLanguage}, #{originalTitle}, #{overview}, #{popularity}, #{posterPath}, #{releaseDate},
-            #{revenue}, #{runtime}, #{status}, #{tagline}, #{title}, #{video}, #{voteAverage}, #{voteCount})
-    </insert>
+<insert id="insertMovies" parameterType="com.example.models.admin.Movie">
+  <selectKey keyProperty="movieId" resultType="java.lang.Integer" order="AFTER">
+    SELECT LAST_INSERT_ID() as movieId
+  </selectKey>
+  INSERT INTO movies (adult, backdrop_path, belongs_to_collection, budget, homepage, imdb_id,
+    original_language, original_title, overview, popularity, poster_path, release_date, revenue, runtime,
+    status, tagline, title, video, vote_average, vote_count)
+  VALUES (#{adult}, #{backdropPath}, #{belongsToCollection}, #{budget}, #{homePage}, #{imdbId},
+    #{originalLanguage}, #{originalTitle}, #{overview}, #{popularity}, #{posterPath}, #{releaseDate},
+    #{revenue}, #{runtime}, #{status}, #{tagline}, #{title}, #{video}, #{voteAverage}, #{voteCount})
+</insert>
+	<insert id="insertMovieGenres">
+  INSERT INTO moviegenre (MOVIE_ID, GENRE_ID)
+  VALUES (#{movieId}, #{genreId})
+</insert>
     
 
     <select id="listMovie" resultMap="movieResultMap">
