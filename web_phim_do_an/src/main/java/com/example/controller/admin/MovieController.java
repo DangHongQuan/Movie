@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,26 +28,23 @@ import com.example.models.admin.Movie;
 import com.example.models.admin.MovieGenre;
 import com.example.service.admin.Genres.AdminGenresService;
 import com.example.service.admin.Movie.AdminMovieService;
-import com.example.service.admin.MovieGenre.AdminMovieGenreService;
+
 
 
 
 @Controller
 @RequestMapping("/admin")
 public class MovieController {
+	  private final AdminMovieService adminMovieService;
 
+	    @Autowired
+	    public MovieController(AdminMovieService adminMovieService) {
+	        this.adminMovieService = adminMovieService;
+	    }
 	@Autowired
 	private AdminGenresService adminGenresService;
 
-	@Autowired
-	private AdminMovieService adminMovieService;
 
-	@Autowired
-	private AdminMovieGenreService adminMovieGenreService;
-	// @GetMapping("/movie")
-	// public String getaddMovie() {
-	// 	return "quanly/pages/movies/add_movie";
-	// }
 
 	@GetMapping("/adminmovie")
 	public String addAuthor(Model model) {
@@ -61,9 +59,12 @@ public class MovieController {
 	}
 	
 	@PostMapping("/adminmovie")
-	public String savePhoneBook(@ModelAttribute("movie") Movie movie, MovieGenre movieGenre) {
-		adminMovieService.insertMovies(movie);
-		adminMovieGenreService.insertMovieGenres(movieGenre);
+	public String savePhoneBook(@ModelAttribute Movie movie, @ModelAttribute MovieGenre movieGenre) {
+		 Integer movieId = adminMovieService.insertMovieWithGenre(movie, movieGenre);
+	        // ... Xử lý thành công và trả về thông báo
+//		adminMovieService.insertMovies(movie);
+//		adminMovieGenreService.insertMovieGenres(movieGenre);
+//		adminMovieService.insertMovieGenres(movieGenre);
 		return "redirect:/admin/adminmovie";
 	}
 
