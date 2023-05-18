@@ -24,8 +24,10 @@ import org.springframework.util.FileSystemUtils;
 
 import com.example.models.Genre;
 import com.example.models.admin.Movie;
+import com.example.models.admin.MovieGenre;
 import com.example.service.admin.Genres.AdminGenresService;
 import com.example.service.admin.Movie.AdminMovieService;
+import com.example.service.admin.MovieGenre.AdminMovieGenreService;
 
 
 
@@ -38,6 +40,9 @@ public class MovieController {
 
 	@Autowired
 	private AdminMovieService adminMovieService;
+
+	@Autowired
+	private AdminMovieGenreService adminMovieGenreService;
 	// @GetMapping("/movie")
 	// public String getaddMovie() {
 	// 	return "quanly/pages/movies/add_movie";
@@ -49,12 +54,16 @@ public class MovieController {
 		model.addAttribute("genresList", genresList);
 		Movie movie = new Movie();
 		model.addAttribute("movie", movie);
+		MovieGenre movieGenres = new MovieGenre();
+		model.addAttribute("movieGenres", movieGenres);
+		
 		return "quanly/pages/movies/add_movie";
 	}
 	
 	@PostMapping("/adminmovie")
-	public String savePhoneBook(@ModelAttribute("movie") Movie movie) {
+	public String savePhoneBook(@ModelAttribute("movie") Movie movie, MovieGenre movieGenre) {
 		adminMovieService.insertMovies(movie);
+		adminMovieGenreService.insertMovieGenres(movieGenre);
 		return "redirect:/admin/adminmovie";
 	}
 
