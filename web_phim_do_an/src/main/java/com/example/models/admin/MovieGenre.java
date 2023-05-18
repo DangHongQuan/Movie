@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MovieGenre {
     private Integer mgId;
-    private String movieId;
-    private String genreId;
+    private Integer movieId;
+    private Integer genreId;
 }
