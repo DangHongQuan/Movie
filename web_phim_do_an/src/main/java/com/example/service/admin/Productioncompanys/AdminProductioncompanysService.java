@@ -1,9 +1,15 @@
 package com.example.service.admin.Productioncompanys;
 
-import com.example.models.ProductionCompany;
+import com.example.models.admin.MovieProductioncompanys;
+import com.example.models.admin.Productioncompanys;
 
 public interface AdminProductioncompanysService {
 
-    void insertProductionCompany(ProductionCompany productionCompany);
+    void insertProductionCompanys(Productioncompanys productionCompanys);
+
+    void insertMovieProductionCompanys(MovieProductioncompanys movieProductioncompanys);
+
+    Integer insertMovieProductionCompanyswithProduction(Productioncompanys productionCompanys,
+            MovieProductioncompanys movieProductioncompanys);
     
 }

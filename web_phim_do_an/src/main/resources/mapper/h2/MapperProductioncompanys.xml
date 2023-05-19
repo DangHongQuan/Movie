@@ -1,21 +1,28 @@
 <!-- movie_mapper.xml -->
-
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.response.admin.AdminProductioncompanysRepository">
-
-    <resultMap id="productioncompanysResultMap" type="com.example.models.admin.Productioncompanys">
-        <id property="pcId" column="PRODUCTION_COMPANY_ID_" />
-        <result property="logoPath" column="LOGO_PATH_" />
-        <result property="name" column="NAME_" />
-        <result property="originCountry" column="ORIGIN_COUNTRY_" />
-    </resultMap>
-
-    <insert id="insertProductionCompany" parameterType="com.example.models.admin.Productioncompanys">
-        INSERT INTO PRODUCTIONCOMPANYS (LOGO_PATH_, NAME_, ORIGIN_COUNTRY_)
-        VALUES (#{logoPath}, #{name}, #{originCountry})
-    </insert>
-    
+	<resultMap id="productioncompanysResultMap" type="com.example.models.admin.Productioncompanys">
+		<id property="pcId" column="PRODUCTION_COMPANY_ID_" />
+		<result property="logoPath" column="LOGO_PATH_" />
+		<result property="name" column="NAME_" />
+		<result property="originCountry" column="ORIGIN_COUNTRY_" />
+	</resultMap>
+	<!--
+	<insert id="insertProductionCompanys" parameterType="com.example.models.admin.Productioncompanys">
+	INSERT INTO PRODUCTIONCOMPANYS (LOGO_PATH_, NAME_, ORIGIN_COUNTRY_)
+	VALUES (#{logoPath}, #{name}, #{originCountry})
+	</insert>
+	-->
+	<insert id="insertProductionCompanys" parameterType="com.example.models.admin.Productioncompanys">
+		<selectKey keyProperty="pcId" resultType="java.lang.Integer" order="AFTER">
+			SELECT LAST_INSERT_ID() as pcId
+		</selectKey>
+		INSERT INTO PRODUCTIONCOMPANYS (LOGO_PATH_, NAME_, ORIGIN_COUNTRY_)
+		VALUES (#{logoPath}, #{name}, #{originCountry})
+	</insert>
+	<insert id="insertMovieProductionCompanys">
+		INSERT INTO movieproductioncompany
+         (PRODUCTION_COMPANY_ID_, MOVIE_ID) 
+		VALUES (#{productionCompanyId}, #{movieId})
+	</insert>
 </mapper>
