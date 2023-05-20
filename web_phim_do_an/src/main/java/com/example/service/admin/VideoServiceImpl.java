@@ -32,4 +32,16 @@ public class VideoServiceImpl implements VideoService {
 		mapper.deleteVideo(videoId);
 	}
 
+	@Override
+	public Video findOne(Integer videoId) {
+		// TODO Auto-generated method stub
+		return mapper.findOneVideo(videoId);
+	}
+
+	@Override
+	public void updateVideo(Video video) {
+		// TODO Auto-generated method stub
+		mapper.updateVideo(video);
+	}
+
 }

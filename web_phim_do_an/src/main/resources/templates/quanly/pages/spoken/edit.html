@@ -5,7 +5,8 @@
 <title>Add Spoken</title>
 </head>
 <body>
-	<form action="/admin/spoken/add" method="post" th:object="${spoken}">
+	<form action="/admin/spoken/edit" method="post" th:object="${spoken}">
+		<input type="hidden" th:field="*{spolangId}"/>
 		<div>
 			<label>IOS 639 1</label>
 			<input type="text" th:field="*{iso6391}"/>

@@ -1,10 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add Video</title>
 </head>
 <body>
-
+	<form action="/admin/video/edit" method="post" th:object = "${video}">
+		<input type="hidden" th:field="*{videoId}"/>
+		<div>
+			<label>IOS 639 1</label>
+			<input type="text"/ th:field="*{iso6391}">
+		</div>
+		<div>
+			<label>ISO 3166 1</label>
+			<input type="text"/ th:field="*{iso31661}">
+		</div>
+		<div>
+			<label>Name</label>
+			<input type="text"/ th:field="*{name}">
+		</div>
+		<div>
+			<label>Key</label>
+			<input type="text" th:field="*{keyYt}"/>
+		</div>
+		<div>
+			<label>Site</label>
+			<input type="text"/ th:field="*{site}">
+		</div>
+		<div>
+			<label>Size</label>
+			<input type="text"/ th:field="*{size}">
+		</div>
+		<div>
+			<label>Type</label>
+			<input type="text"/ th:field="*{type}">
+		</div>
+		<div>
+			<label>Official</label>
+			<input type="text"/ th:field="*{official}">
+		</div>
+		<div>
+			<label>Published At</label>
+			<input type="date"/ th:field="*{publishedAt}">
+		</div>
+		<div>
+			<button type="submit">Save</button>
+		</div>
+	</form>
 </body>
 </html>
