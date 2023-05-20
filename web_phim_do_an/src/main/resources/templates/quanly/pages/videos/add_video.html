@@ -42,6 +42,17 @@
 			<label>Published At</label>
 			<input type="date"/ th:field="*{publishedAt}">
 		</div>
+
+		<select
+				class="form-select form-select-lg mb-3 border border-dark"
+				name="movieId">
+				<option selected>---Chon Tiêu Đề Phim---</option>
+				<option
+					th:object="${movieViedeo}"
+					th:each="data : ${list}" th:value="${data.movieId}"
+					th:text="${data.originalTitle}"
+					th:selected="${data.movieId == movieViedeo.movieId}"></option>
+			</select>
 		<div>
 			<button type="submit">Add Video</button>
 		</div>

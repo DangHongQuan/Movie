@@ -17,7 +17,6 @@ public class SpokenLanguageImpl implements SpokenLanguageService{
     @Autowired
     public SpokenLanguageImpl(SpokenLanguageMapper mapper) {
         this.mapper = mapper;
-        // this.adminMovieGenreRepository = adminMovieGenreRepository;
     }
 
 	// @Autowired
@@ -55,13 +54,13 @@ public class SpokenLanguageImpl implements SpokenLanguageService{
 		
 		mapper.insertSpoken(spokenLanguage);
 
-		Integer videoId = spokenLanguage.getSpolangId();
+		Integer soplangId = spokenLanguage.getSpolangId();
 
-		moviespokenlanguages.setSpolangId(videoId);
+		moviespokenlanguages.setMslId(soplangId);
 
 		mapper.insertMovieSpLa(moviespokenlanguages);
 
-		return videoId;
+		return soplangId;
 
 
 	}

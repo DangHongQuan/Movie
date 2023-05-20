@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.models.admin.Movievideo;
 import com.example.models.admin.Video;
 
 @Mapper
@@ -13,4 +14,5 @@ public interface VideoMapper {
 	public void insertVideo(Video video);
 	public void updateVideo(Video video);
 	public void deleteVideo(Integer videoId);
+    public void insertMovieVideo(Movievideo movievideo);
 }

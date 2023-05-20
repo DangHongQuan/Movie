@@ -24,9 +24,22 @@
 	
 	
 	
-	<insert id = "insertVideo">
+	<!-- <insert id = "insertVideo">
 		insert into videos(video_id, iso_639_1, iso_3166_1, name, key_yt, site, size, type, official, published_at)
 		 values (#{videoId}, #{iso6391}, #{iso31661}, #{name}, #{keyYt}, #{site}, #{size}, #{type}, #{official}, #{publishedAt});
+	</insert> -->
+
+	<insert id="insertVideo" parameterType="com.example.models.admin.Video">
+		<selectKey keyProperty="videoId" resultType="java.lang.Integer" order="AFTER">
+			SELECT LAST_INSERT_ID() as videoId
+		</selectKey>
+		insert into videos(video_id, iso_639_1, iso_3166_1, name, key_yt, site, size, type, official, published_at)
+		 values (#{videoId}, #{iso6391}, #{iso31661}, #{name}, #{keyYt}, #{site}, #{size}, #{type}, #{official}, #{publishedAt});
+	</insert>
+	<insert id="insertMovieVideo">	
+		INSERT INTO movievideo
+		(MOVIE_ID , VIDEO_ID   )
+		VALUES (#{movieId}, #{videoId})
 	</insert>
 	
 	<update id ="updateVideo">

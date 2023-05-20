@@ -49,7 +49,7 @@ public class SpokenLanguageController {
 	public String postSpoken(@ModelAttribute SpokenLanguage spokenLanguage,@ModelAttribute Moviespokenlanguages moviespokenlanguages) {
 		// service.insertMovieVideo(movievideo);
 		// service.insertSpoken(spokenLanguage);
-		Integer videoId= languageService.insertMovieVideoWithSpokeLa(spokenLanguage,moviespokenlanguages);
+		Integer soplangId= languageService.insertMovieVideoWithSpokeLa(spokenLanguage,moviespokenlanguages);
 		return "redirect:/admin/spoken/add";
 	}
 	
