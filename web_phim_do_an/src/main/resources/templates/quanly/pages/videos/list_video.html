@@ -23,15 +23,15 @@
 		<tbody>
 			<tr th:each="item: ${video}">
 				<td th:text="${item.videoId}"></td>
+				<td th:text="${item.iso6391}"></td>
+				<td th:text="${item.iso31661}"></td>
 				<td th:text="${item.name}"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td th:text="${item.keyYt}"></td>
+				<td th:text="${item.site}"></td>
+				<td th:text="${item.size}"></td>
+				<td th:text="${item.type}"></td>
+				<td th:text="${item.official}"></td>
+				<td th:text="${item.publishedAt}"></td>
 			</tr>
 		</tbody>
 	</table>
