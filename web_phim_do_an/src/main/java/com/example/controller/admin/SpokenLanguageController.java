@@ -11,24 +11,46 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.models.admin.Movie;
+import com.example.models.admin.Moviespokenlanguages;
+import com.example.models.admin.Movievideo;
 import com.example.models.admin.SpokenLanguage;
-import com.example.service.admin.SpokenLanguageService;
+import com.example.service.MovieService;
+import com.example.service.admin.Movie.AdminMovieService;
+import com.example.service.admin.SpokeLanguage.SpokenLanguageService;
 
 @Controller
 @RequestMapping("/admin/spoken")
 public class SpokenLanguageController {
+
+	private final SpokenLanguageService languageService;
+
+	    @Autowired
+	    public SpokenLanguageController(SpokenLanguageService languageService) {
+	        this.languageService = languageService;
+	    }
 	@Autowired
 	private SpokenLanguageService service;
+
+	@Autowired
+    private AdminMovieService adminMovieService;
 	
 	@GetMapping("/add")
-	public String getAddSpoken(@ModelAttribute("spoken") SpokenLanguage spoken) {
+	public String getAddSpoken(@ModelAttribute("spoken") SpokenLanguage spoken, Model model,@ModelAttribute("movieSpokeLa") Moviespokenlanguages moviespokenlanguages) {
+		List<Movie> listmovieSpoke= adminMovieService.listMovie();
+		model.addAttribute("listMovieSpoke", listmovieSpoke);
+		Moviespokenlanguages movieSpokeLa=new Moviespokenlanguages();
+		model.addAttribute("movieSpokeLa", movieSpokeLa);
+
 		return "quanly/pages/spoken/add_spoken";
 	}
 	
 	@PostMapping("/add")
-	public String postSpoken(@ModelAttribute SpokenLanguage spokenLanguage) {
-		service.insertSpoken(spokenLanguage);
-		return "redirect:/admin/spoken/list";
+	public String postSpoken(@ModelAttribute SpokenLanguage spokenLanguage,@ModelAttribute Moviespokenlanguages moviespokenlanguages) {
+		// service.insertMovieVideo(movievideo);
+		// service.insertSpoken(spokenLanguage);
+		Integer videoId= languageService.insertMovieVideoWithSpokeLa(spokenLanguage,moviespokenlanguages);
+		return "redirect:/admin/spoken/add";
 	}
 	
 	@GetMapping("/list")
