@@ -39,6 +39,9 @@ public class ProductioncompanysController {
         model.addAttribute("productionCompanys", productionCompanys);
         List<Movie> movies = adminMovieService.listMovie();
         model.addAttribute("listMovie", movies);
+        MovieProductioncompanys movieProductioncompanys=new MovieProductioncompanys();
+        model.addAttribute("movieProductioncompanys", movieProductioncompanys);
+       
         return "quanly/pages/productioncompanys/add_productioncompanys";
     }
 
