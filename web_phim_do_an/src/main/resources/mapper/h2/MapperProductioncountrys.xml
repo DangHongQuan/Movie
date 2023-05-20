@@ -12,9 +12,22 @@
       
     </resultMap>
 
-  <insert id="insertProductioncountrys" parameterType="com.example.models.admin.Productioncountrys">
+  <!-- <insert id="insertProductioncountrys" parameterType="com.example.models.admin.Productioncountrys">
         INSERT INTO productioncountrys (ISO_3166_1, NAME)
         VALUES (#{iso31661}, #{name})
-    </insert>
+    </insert> -->
+
+    <insert id="insertProductioncountrys" parameterType="com.example.models.admin.Productioncountrys">
+		<selectKey keyProperty="pcountryId" resultType="java.lang.Integer" order="AFTER">
+			SELECT LAST_INSERT_ID() as pcountryId
+		</selectKey>
+		INSERT INTO productioncountrys (ISO_3166_1, NAME)
+        VALUES (#{iso31661}, #{name})
+	</insert>
+	<insert id="insertMovieProductioncountry">
+		INSERT INTO movieproductioncountrys
+         (PCOUNTRY_ID, MOVIE_ID) 
+		VALUES (#{pcountryId}, #{movieId})
+	</insert>
     
 </mapper>
