@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-
+	<table>
+		<thead>
+			<tr>
+				<th>No.</th>
+				<th>ISO 639_1</th>
+				<th>ISO 3166_1</th>
+				<th>Name</th>
+				<th>Key</th>
+				<th>Site</th>
+				<th>Size</th>
+				<th>Type</th>
+				<th>Official</th>
+				<th>Published At</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="item: ${video}">
+				<td th:text="${item.videoId}"></td>
+				<td th:text="${item.name}"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
 </body>
 </html>

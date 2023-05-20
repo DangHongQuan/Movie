@@ -26,4 +26,9 @@ public class SpokenLanguageController {
 		service.insertSpoken(spokenLanguage);
 		return "redirect:/admin/spoken/add";
 	}
+	
+	@GetMapping("/list")
+	public String getListSpoken() {
+		return "";
+	}
 }
