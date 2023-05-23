@@ -29,6 +29,7 @@ import com.example.models.admin.Movie;
 import com.example.models.admin.MovieGenre;
 import com.example.service.admin.Genres.AdminGenresService;
 import com.example.service.admin.Movie.AdminMovieService;
+import com.example.service.admin.MovieGenre.AdminMoveiGenreService;
 
 
 
@@ -36,6 +37,9 @@ import com.example.service.admin.Movie.AdminMovieService;
 @Controller
 @RequestMapping("/admin")
 public class MovieController {
+
+	@Autowired
+	private AdminMoveiGenreService adminMoveiGenreService;
 	  private final AdminMovieService adminMovieService;
 
 	    @Autowired
@@ -89,13 +93,16 @@ public class MovieController {
 		model.addAttribute("movie", movie);
 		List<Genre> listGenreEdit = adminGenresService.getAllGenre();
 		model.addAttribute("listGenreEdit", listGenreEdit);
+		MovieGenre movieGenres = new MovieGenre();
+		model.addAttribute("movieGenresedit", movieGenres);
 		return "quanly/pages/movies/edit_movie";
 	}
 
 	@PostMapping(value = "/update")
-	public String updateMovie(@ModelAttribute("udMovie") Movie movie,@ModelAttribute("udGenre") Genre genre, Model model){
+	public String updateMovie(@ModelAttribute("udMovie") Movie movie,@ModelAttribute("ubMovieGenre") MovieGenre movieGenre, Model model){
 		adminMovieService.updateMovie(movie);
-		adminGenresService.insertGenre(genre);
+		// adminGenresService.insertGenre(genre);
+		adminMoveiGenreService.updateMoveiGenreEdit(movieGenre);
 		return "redirect:/admin/listmovie";
 
 	}
