@@ -22,7 +22,24 @@
 	</insert>
 	<insert id="insertMovieProductionCompanys">
 		INSERT INTO movieproductioncompany
-         (PRODUCTION_COMPANY_ID_, MOVIE_ID) 
+		(PRODUCTION_COMPANY_ID_, MOVIE_ID)
 		VALUES (#{productionCompanyId}, #{movieId})
 	</insert>
+	<select id="getAllProductioncompanys" resultMap="productioncompanysResultMap">
+		select * from productioncompanys
+	</select>
+	<delete id="deleteProductionCompanies">
+		DELETE FROM productioncompanys
+		WHERE PRODUCTION_COMPANY_ID_=#{pcId};
+	</delete>
+	<update id="updateProductionCompanies">
+		UPDATE productioncompanys
+		SET LOGO_PATH_ = #{logoPath}, NAME_ = #{name}, ORIGIN_COUNTRY_ = #{originCountry}
+		WHERE PRODUCTION_COMPANY_ID_ = #{pcId};
+	</update>
+	<select id="findProductionCompayns" resultMap="productioncompanysResultMap">
+		SELECT *
+		FROM productioncompanys
+		WHERE PRODUCTION_COMPANY_ID_ = #{pcId};
+	</select>
 </mapper>

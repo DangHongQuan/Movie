@@ -1,5 +1,7 @@
 package com.example.service.admin.Productioncompanys;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +44,26 @@ public class AdminProductioncompanysServiceimpl implements AdminProductioncompan
                 adminProductioncompanysRepository.insertMovieProductionCompanys(movieProductioncompanys);
 
        return ProducCompaynId;
+    }
+
+    @Override
+    public List<Productioncompanys> getAllProductioncompanys() {
+      return adminProductioncompanysRepository.getAllProductioncompanys();
+    }
+
+    @Override
+    public void deleteProductioncompanys(Integer id) {
+     adminProductioncompanysRepository.deleteProductionCompanies(id);
+    }
+
+    @Override
+    public Productioncompanys findProductioncompaynsId(Integer id) {
+      return adminProductioncompanysRepository.findProductionCompayns(id);
+    }
+
+    @Override
+    public void updateProductioncompanys(Productioncompanys productioncompanys) {
+       adminProductioncompanysRepository.updateProductionCompanies(productioncompanys);
     }
 
     
