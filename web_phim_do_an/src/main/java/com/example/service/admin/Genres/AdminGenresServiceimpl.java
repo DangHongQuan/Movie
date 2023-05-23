@@ -24,5 +24,10 @@ public class AdminGenresServiceimpl implements AdminGenresService{
         return  adminGenresRepository.getAllGenre();
        
     }
+
+    @Override
+    public void deleteGenre(Integer id) {
+     adminGenresRepository.deleteGenre(id);
+    }
     
 }

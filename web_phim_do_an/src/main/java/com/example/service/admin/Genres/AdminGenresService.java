@@ -9,5 +9,7 @@ public interface AdminGenresService {
     void insertGenre(Genre genre);
 
     List<Genre> getAllGenre();
+
+    void deleteGenre(Integer id);
     
 }
