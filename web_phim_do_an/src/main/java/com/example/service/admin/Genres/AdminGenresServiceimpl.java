@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.models.Genre;
+import com.example.models.admin.Genres;
 import com.example.response.admin.AdminGenresRepository;
 
 @Service
@@ -31,8 +32,18 @@ public class AdminGenresServiceimpl implements AdminGenresService{
     }
 
     @Override
-    public void updateGenres(Genre genre) {
-       adminGenresRepository.updateGenres(genre);
+    public void updateGenres(Genres genres) {
+       adminGenresRepository.updateGenres(genres);
+    }
+
+    @Override
+    public Genres findGenresId(Integer id) {
+      return adminGenresRepository.findGenresId(id);
+    }
+
+    @Override
+    public void capnhatGenre(Genres genres) {
+      adminGenresRepository.capnhatGenres(genres);
     }
     
 }

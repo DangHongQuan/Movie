@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.models.Genre;
+import com.example.models.admin.Genres;
 import com.example.service.admin.Genres.AdminGenresService;
 import com.example.service.admin.MovieGenre.AdminMoveiGenreService;
 
@@ -58,11 +59,21 @@ public class GenresController {
 
     @GetMapping("/deletee/{id}")
     public String deleteGenre(@PathVariable Integer id) {
-
         adminGenresService.deleteGenre(id);
-
         return "redirect:/admin/listGenre";
-
     }
 
+    @GetMapping(value = "editt/{id}")
+	public String editGenes(@PathVariable("id") Integer id, Model model){
+		Genres genres = adminGenresService.findGenresId(id);
+		model.addAttribute("updateGenres", genres);
+		return "quanly/pages/genres/edit_genres";
+	}
+
+	@PostMapping(value = "/capnhat")
+	public String updateGenre(@ModelAttribute("genres") Genres genres){
+		adminGenresService.capnhatGenre(genres);
+		return "redirect:/admin/listGenre";
+
+	}
 }
