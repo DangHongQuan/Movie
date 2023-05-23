@@ -14,5 +14,7 @@ public interface AdminGenresRepository {
     List<Genre> getAllGenre();
 
     void deleteGenre(Integer id);
+
+    void updateGenres(Genre genre);
     
 }

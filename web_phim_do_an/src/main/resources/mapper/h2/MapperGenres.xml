@@ -20,5 +20,9 @@ delete from genres where genre_id = #{genreId};
 	<select id="getAllGenre" resultMap="genresResultMap">
 		select * from genres
 	</select>
+	
+	<update id="updateGenres">
+	update genres set name = #{name} where genre_id = #{genreId}
+	</update>
 	<!-- Add more SQL queries as needed -->
 </mapper>

@@ -61,7 +61,7 @@ public class GenresController {
 
         adminGenresService.deleteGenre(id);
 
-        return "redirect:/admin/listgenres";
+        return "redirect:/admin/listGenre";
 
     }
 

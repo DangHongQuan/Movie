@@ -29,5 +29,10 @@ public class AdminGenresServiceimpl implements AdminGenresService{
     public void deleteGenre(Integer id) {
      adminGenresRepository.deleteGenre(id);
     }
+
+    @Override
+    public void updateGenres(Genre genre) {
+       adminGenresRepository.updateGenres(genre);
+    }
     
 }

@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.util.FileSystemUtils;
 
 import com.example.models.Genre;
+import com.example.models.admin.Genres;
 import com.example.models.admin.Movie;
 import com.example.models.admin.MovieGenre;
 import com.example.service.admin.Genres.AdminGenresService;
@@ -86,12 +87,15 @@ public class MovieController {
 	public String editMovie(@PathVariable("id") Integer id, Model model){
 		Movie movie = adminMovieService.findMovieId(id);
 		model.addAttribute("movie", movie);
+		List<Genre> listGenreEdit = adminGenresService.getAllGenre();
+		model.addAttribute("listGenreEdit", listGenreEdit);
 		return "quanly/pages/movies/edit_movie";
 	}
 
 	@PostMapping(value = "/update")
-	public String updateMovie(@ModelAttribute("udMovie") Movie movie){
+	public String updateMovie(@ModelAttribute("udMovie") Movie movie,@ModelAttribute("udGenre") Genre genre, Model model){
 		adminMovieService.updateMovie(movie);
+		adminGenresService.insertGenre(genre);
 		return "redirect:/admin/listmovie";
 
 	}
