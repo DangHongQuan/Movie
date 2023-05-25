@@ -16,6 +16,7 @@ import com.example.models.admin.Movievideo;
 import com.example.models.admin.Video;
 import com.example.service.admin.Genres.AdminGenresService;
 import com.example.service.admin.Movie.AdminMovieService;
+import com.example.service.admin.Movievideo.AdminMovievideoService;
 import com.example.service.admin.Video.VideoService;
 
 
@@ -34,6 +35,9 @@ public class VideoController {
 
 	@Autowired
 	private AdminMovieService adminMovieService;
+
+	@Autowired
+	private AdminMovievideoService adminMovievideoService;
 	
 	@GetMapping("/list")
 	public String getListVideo(Model model) {
@@ -60,20 +64,34 @@ public class VideoController {
 		return "redirect:/admin/video/add";
 	}
 	
-	@GetMapping("/edit/{id}")
+	@GetMapping("/editvideo/{id}")
 	public String getEditVideo(@PathVariable(value = "id", required = false) Integer videoId, Model model) {
 		Video video = service.findOne(videoId);
 		model.addAttribute("video", video);
+		List<Movie> movies = adminMovieService.listMovie();
+		model.addAttribute("listMovie", movies);
+		Movievideo movievideo = new Movievideo();
+		model.addAttribute("movievideo", movievideo);
 		return "quanly/pages/videos/edit_video";
 	}
 	
-	@PostMapping("/edit")
-	public String postEditVideo(@ModelAttribute("video") Video video) {
+	@PostMapping("/editvideo")
+	public String postEditVideo(@ModelAttribute("video") Video video,@ModelAttribute("movievideo") Movievideo movievideo) {
+		
+		Integer videoId= video.getVideoId();
+		movievideo.setMvId(videoId);
+		movievideo.setMvId(videoId);
 		service.updateVideo(video);
+		adminMovievideoService.updateMovieVideo(movievideo);
+
 		return "redirect:/admin/video/list";
 	}
+
+
+
+
 	
-	@GetMapping("/delete/{id}")
+	@GetMapping("/deletevideo/{id}")
 	public String deleteVideo(@PathVariable("id") Integer id) {
 		service.deleteVideo(id);
 		return "redirect:/admin/video/list";

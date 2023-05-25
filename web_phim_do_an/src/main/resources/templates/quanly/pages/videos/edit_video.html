@@ -5,7 +5,7 @@
 <title>Add Video</title>
 </head>
 <body>
-	<form action="/admin/video/edit" method="post" th:object = "${video}">
+	<form action="/admin/video/editvideo" method="post" th:object = "${video}">
 		<input type="hidden" th:field="*{videoId}"/>
 		<div>
 			<label>IOS 639 1</label>
@@ -43,6 +43,25 @@
 			<label>Published At</label>
 			<input type="date"/ th:field="*{publishedAt}">
 		</div>
+		<div >
+			<label class="text-dark form-lable">Chọn Thể Loại Phim <span
+				class="text-danger">(*)</span> </label>
+
+			<select
+			  class="form-select form-select-lg mb-3 border border-dark"
+			  name="movieId">
+			  <option selected>---Chon Tiêu Đề Phim---</option>
+			  <option
+				th:object="${movievideo}" 
+				th:each="data : ${listMovie}" th:value="${data.movieId}"
+				th:text="${data.originalTitle}"
+				th:selected="${data.movieId == movievideo.movieId}"
+				></option>
+			</select>
+
+		  </div>
+		
+		<div>
 		<div>
 			<button type="submit">Save</button>
 		</div>

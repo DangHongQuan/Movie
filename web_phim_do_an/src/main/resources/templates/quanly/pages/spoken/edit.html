@@ -5,7 +5,7 @@
 <title>Add Spoken</title>
 </head>
 <body>
-	<form action="/admin/spoken/edit" method="post" th:object="${spoken}">
+	<form action="/admin/spoken/editspoken" method="post" th:object="${spoken}">
 		<input type="hidden" th:field="*{spolangId}"/>
 		<div>
 			<label>IOS 639 1</label>
@@ -19,6 +19,24 @@
 			<label>Name</label>
 			<input type="text" th:field="*{name}" />
 		</div>
+
+		<div >
+			<label class="text-dark form-lable">Chọn Thể Loại Phim <span
+				class="text-danger">(*)</span> </label>
+
+			<select
+			  class="form-select form-select-lg mb-3 border border-dark"
+			  name="movieId">
+			  <option selected>---Chon Tiêu Đề Phim---</option>
+			  <option
+				th:object="${moviespokenlanguages}" 
+				th:each="data : ${listMovie}" th:value="${data.movieId}"
+				th:text="${data.originalTitle}"
+				th:selected="${data.movieId == moviespokenlanguages.movieId}"
+				></option>
+			</select>
+
+		  </div>
 		
 		<div>
 			<button type="submit">Add spoken</button>

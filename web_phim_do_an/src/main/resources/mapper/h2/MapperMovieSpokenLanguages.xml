@@ -1,0 +1,17 @@
+<!-- movie_mapper.xml -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.response.admin.AdminMoviespokenlanguagesRepository">
+	<resultMap id="MovieSpokeResultMap" type="com.example.models.admin.Moviespokenlanguages">
+		<id property="mslId" column="MSL_ID" />
+		<result property="movieId" column="MOVIE_ID" />
+		<result property="spolangId" column="SPOLANG_ID" />
+
+	</resultMap>
+	
+
+    <update id="updateMovieSpoke" parameterType="com.example.models.admin.Moviespokenlanguages">
+		UPDATE moviespokenlanguages
+		SET MOVIE_ID = #{movieId}
+		WHERE SPOLANG_ID= #{spolangId}
+	</update>
+</mapper>

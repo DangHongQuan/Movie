@@ -56,7 +56,7 @@ public class SpokenLanguageImpl implements SpokenLanguageService{
 
 		Integer soplangId = spokenLanguage.getSpolangId();
 
-		moviespokenlanguages.setMslId(soplangId);
+		moviespokenlanguages.setSpolangId(soplangId);
 
 		mapper.insertMovieSpLa(moviespokenlanguages);
 
