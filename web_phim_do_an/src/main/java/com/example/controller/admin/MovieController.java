@@ -101,7 +101,6 @@ public class MovieController {
 	@PostMapping(value = "/update")
 	public String updateMovie(@ModelAttribute("udMovie") Movie movie,@ModelAttribute("ubMovieGenre") MovieGenre movieGenre, Model model){
 		adminMovieService.updateMovie(movie);
-		// adminGenresService.insertGenre(genre);
 		adminMoveiGenreService.updateMoveiGenreEdit(movieGenre);
 		return "redirect:/admin/listmovie";
 

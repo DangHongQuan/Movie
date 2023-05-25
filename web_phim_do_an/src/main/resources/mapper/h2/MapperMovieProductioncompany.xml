@@ -1,0 +1,14 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.response.admin.AdminMovieProductioncompanysRepository">
+	<resultMap id="MovieproductionResultMap" type="com.example.models.admin.MovieProductioncompanys">
+		<id property="mpcId" column="MPC_ID " />
+		<result property="productionCompanyId" column="PRODUCTION_COMPANY_ID_" />
+		<result property="movieId" column="MOVIE_ID"/>
+	</resultMap>
+    <update id="updateMovieProductioncampanys" parameterType="com.example.models.admin.MovieProductioncompanys">
+		UPDATE movieproductioncompany
+		SET MOVIE_ID = #{movieId}
+		WHERE PRODUCTION_COMPANY_ID_= #{productionCompanyId}
+	</update>
+	
+</mapper>

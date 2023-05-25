@@ -15,12 +15,18 @@ import com.example.models.admin.Movie;
 import com.example.models.admin.MovieProductioncompanys;
 import com.example.models.admin.Productioncompanys;
 import com.example.service.admin.Movie.AdminMovieService;
-
+import com.example.service.admin.Movieproductioncompany.AdminMovieProductioncompanysService;
 import com.example.service.admin.Productioncompanys.AdminProductioncompanysService;
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+import com.mysql.cj.log.Log;
+
+import lombok.extern.slf4j.Slf4j;
+
+
 
 @RequestMapping(value = "/admin")
 @Controller
+@Slf4j
 public class ProductioncompanysController {
 
     
@@ -35,6 +41,13 @@ public class ProductioncompanysController {
 
     @Autowired
     private AdminProductioncompanysService adminProductioncompanysService;
+
+    @Autowired
+    private AdminMovieProductioncompanysService adminMovieProductioncompanysService;
+
+  
+
+    
 
     @Autowired
     private AdminMovieService adminMovieService;
@@ -76,18 +89,27 @@ public class ProductioncompanysController {
 
     }
     @GetMapping(value = "editproductioncompanys/{id}")
-	public String editGenes(@PathVariable("id") Integer id, Model model){
+	public String editProductioncompany(@PathVariable("id") Integer id, Model model){
 		Productioncompanys productioncompanys = adminProductioncompanysService2.findProductioncompaynsId(id);
 		model.addAttribute("updateproductioncompanys", productioncompanys);
+        List<Movie> movies = adminMovieService.listMovie();
+        model.addAttribute("listMovie", movies);
+        MovieProductioncompanys movieProductioncompanys= new MovieProductioncompanys();
+        model.addAttribute("productioncompanys", movieProductioncompanys);
 		return "quanly/pages/productioncompanys/edit_productioncompanys";
 	}
 
 	@PostMapping(value = "/updateProductioncompanys")
-	public String updateGenre(@ModelAttribute("productioncompanys") Productioncompanys productioncompanys,@ModelAttribute("movieProductioncampanys") MovieProductioncompanys movieProductioncompanys){
+	public String updateProductioncompany(@ModelAttribute("updateproductioncompanys") Productioncompanys productioncompanys,
+    @ModelAttribute("movieProductioncompanys") MovieProductioncompanys movieProductioncompanys){
+        Integer pcId = productioncompanys.getPcId();
+        movieProductioncompanys.setMpcId(pcId);
+        
+        Integer productionCompamyId = productioncompanys.getPcId();
+        movieProductioncompanys.setProductionCompanyId(productionCompamyId);
 		adminProductioncompanysService2.updateProductioncompanys(productioncompanys);
-        // adminMovieproductioncompanyService.updateMovieProductioncompanys(movieProductioncompanys);
+        adminMovieProductioncompanysService.updateMovieProductioncampanys(movieProductioncompanys);
 		return "redirect:/admin/listproductioncompanys";
-
 	}
 
 }

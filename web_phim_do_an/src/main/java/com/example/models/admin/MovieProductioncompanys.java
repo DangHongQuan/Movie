@@ -11,4 +11,5 @@ public class MovieProductioncompanys {
     private Integer mpcId;
     private Integer productionCompanyId;
     private Integer movieId;
+    
 }
