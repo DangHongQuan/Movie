@@ -16,6 +16,7 @@ import com.example.models.admin.Movie;
 import com.example.models.admin.Movieprodcutioncountry;
 import com.example.models.admin.Productioncountrys;
 import com.example.service.admin.Movie.AdminMovieService;
+import com.example.service.admin.MovieProductioncountrys.AdminMovieProductioncountrysService;
 import com.example.service.admin.Productioncountrys.AdminProductioncountrysService;
 
 import jakarta.websocket.server.PathParam;
@@ -39,6 +40,9 @@ public class ProductioncountrysController {
 
     @Autowired
     private AdminMovieService adminMovieService;
+
+    @Autowired
+    private AdminMovieProductioncountrysService adminMovieProductioncountrysService;
 
 
     @GetMapping("/adminProductioncountrys")
@@ -76,29 +80,28 @@ public class ProductioncountrysController {
 
     }
 
-    // @GetMapping(value = "editproductioncompanys/{id}")
-	// public String editProductioncompany(@PathVariable("id") Integer id, Model model){
-	// 	Productioncompanys productioncompanys = adminProductioncompanysService2.findProductioncompaynsId(id);
-	// 	model.addAttribute("updateproductioncompanys", productioncompanys);
-    //     List<Movie> movies = adminMovieService.listMovie();
-    //     model.addAttribute("listMovie", movies);
-    //     MovieProductioncompanys movieProductioncompanys= new MovieProductioncompanys();
-    //     model.addAttribute("productioncompanys", movieProductioncompanys);
-	// 	return "quanly/pages/productioncompanys/edit_productioncompanys";
-	// }
+    @GetMapping(value = "editproductioncountrys/{id}")
+	public String editProductionCountrys(@PathVariable("id") Integer id, Model model){
+		Productioncountrys  productioncountrys= adminProductioncountrysService.findProductionCountrys(id);
+		model.addAttribute("updateproductioncountrys", productioncountrys);
+        List<Movie> movies = adminMovieService.listMovie();
+        model.addAttribute("listMovie", movies);
+        Movieprodcutioncountry movieprodcutioncountry= new Movieprodcutioncountry();
+        model.addAttribute("movieprodcutioncountry", movieprodcutioncountry);
+		return "quanly/pages/Productioncountrys/edit_productioncountrys";
+	}
 
-	// @PostMapping(value = "/updateProductioncompanys")
-	// public String updateProductioncompany(@ModelAttribute("updateproductioncompanys") Productioncompanys productioncompanys,
-    // @ModelAttribute("movieProductioncompanys") MovieProductioncompanys movieProductioncompanys){
-    //     Integer pcId = productioncompanys.getPcId();
-    //     movieProductioncompanys.setMpcId(pcId);
-        
-    //     Integer productionCompamyId = productioncompanys.getPcId();
-    //     movieProductioncompanys.setProductionCompanyId(productionCompamyId);
-	// 	adminProductioncompanysService2.updateProductioncompanys(productioncompanys);
-    //     adminMovieProductioncompanysService.updateMovieProductioncampanys(movieProductioncompanys);
-	// 	return "redirect:/admin/listproductioncompanys";
-	// }
+	@PostMapping(value = "/updateProductioncountrys")
+	public String updateProductionCountrys(@ModelAttribute("updateProductionCountrys") Productioncountrys productioncountrys,
+    @ModelAttribute("movieProductionCountrys") Movieprodcutioncountry movieprodcutioncountry){
+        Integer pcId = productioncountrys.getPcountryId();
+        movieprodcutioncountry.setMpcountryId(pcId);
+        Integer productionCompamyId = productioncountrys.getPcountryId();
+        movieprodcutioncountry.setPcountryId(productionCompamyId);
+		adminProductioncountrysService.updateProductionCountrys(productioncountrys);
+        adminMovieProductioncountrysService.updateMovieProductioncountrys(movieprodcutioncountry);
+		return "redirect:/admin/listProductioncountry";
+	}
 
 
     

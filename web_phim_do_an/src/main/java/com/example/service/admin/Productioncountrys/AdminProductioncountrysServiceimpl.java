@@ -57,5 +57,15 @@ public class AdminProductioncountrysServiceimpl implements AdminProductioncountr
      adminProductioncountrysRepository.deleteProductioncountrys(id);
     }
 
+    @Override
+    public Productioncountrys findProductionCountrys(Integer id) {
+       return adminProductioncountrysRepository.findProductionCounttrys(id);
+    }
+
+    @Override
+    public void updateProductionCountrys(Productioncountrys productioncountrys) {
+       adminProductioncountrysRepository.updateProductionCounttrys(productioncountrys);
+    }
+
    
 }

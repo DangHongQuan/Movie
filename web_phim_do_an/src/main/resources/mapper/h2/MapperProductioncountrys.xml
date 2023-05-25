@@ -38,5 +38,16 @@
     DELETE FROM productioncountrys
     WHERE PCOUNTRY_ID = #{pcountryId}
 </delete>
+<select id="findProductionCounttrys" resultMap="productioncountrysResultMap">
+		SELECT *
+		FROM productioncountrys
+		WHERE PCOUNTRY_ID = #{pcountryId};
+	</select>
+
+  <update id="updateProductionCounttrys">
+		UPDATE productioncountrys
+		SET ISO_3166_1 = #{iso31661}, name = #{name}
+		WHERE PCOUNTRY_ID = #{pcountryId};
+	</update>
    
 </mapper>

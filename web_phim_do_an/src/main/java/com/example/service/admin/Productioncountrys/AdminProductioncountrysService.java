@@ -17,5 +17,9 @@ public interface AdminProductioncountrysService {
     List<Productioncountrys> getAllProductioncountrys();
 
     void deleteProductioncountrys(Integer id);
+
+    Productioncountrys findProductionCountrys(Integer id);
+
+    void updateProductionCountrys(Productioncountrys productioncountrys);
     
 }

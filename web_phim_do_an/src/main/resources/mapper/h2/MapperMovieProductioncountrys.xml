@@ -7,6 +7,12 @@
 		<result property="movieId" column="MOVIE_ID" />
 
 	</resultMap>
+
+	 <update id="updateMovieProductioncountry" parameterType="com.example.models.admin.Movieprodcutioncountry">
+		UPDATE movieproductioncountrys
+		SET MOVIE_ID = #{movieId}
+		WHERE PCOUNTRY_ID= #{pcountryId}
+	</update>
 	
 	<!-- Add more SQL queries as needed -->
 </mapper>
