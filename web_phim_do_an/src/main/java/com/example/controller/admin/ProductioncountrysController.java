@@ -2,11 +2,13 @@ package com.example.controller.admin;
 
 import java.util.List;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,8 +18,13 @@ import com.example.models.admin.Productioncountrys;
 import com.example.service.admin.Movie.AdminMovieService;
 import com.example.service.admin.Productioncountrys.AdminProductioncountrysService;
 
+import jakarta.websocket.server.PathParam;
+import lombok.extern.slf4j.Slf4j;
+
+
 @Controller
 @RequestMapping(value = "/admin")
+@Slf4j
 public class ProductioncountrysController {
 
     private final AdminProductioncountrysService adminProductioncountrysService2;
@@ -53,5 +60,46 @@ public class ProductioncountrysController {
 
         return "redirect:/admin/adminProductioncountrys";
     }
+
+    @GetMapping(value = "/listProductioncountry")
+    public String listProductioncountrys(Model model){
+        List<Productioncountrys> productionCountrys = adminProductioncountrysService.getAllProductioncountrys();
+        model.addAttribute("productionCountrys", productionCountrys);
+        return "quanly/pages/Productioncountrys/list_productioncountrys";
+
+    }
+
+    @GetMapping(value = "/deleteproductioncountrys/{id}")
+    public String deleteProductioncountry(@PathVariable("id") Integer id, Model model){
+        adminProductioncountrysService.deleteProductioncountrys(id);
+        return "redirect:/admin/listProductioncountry";
+
+    }
+
+    // @GetMapping(value = "editproductioncompanys/{id}")
+	// public String editProductioncompany(@PathVariable("id") Integer id, Model model){
+	// 	Productioncompanys productioncompanys = adminProductioncompanysService2.findProductioncompaynsId(id);
+	// 	model.addAttribute("updateproductioncompanys", productioncompanys);
+    //     List<Movie> movies = adminMovieService.listMovie();
+    //     model.addAttribute("listMovie", movies);
+    //     MovieProductioncompanys movieProductioncompanys= new MovieProductioncompanys();
+    //     model.addAttribute("productioncompanys", movieProductioncompanys);
+	// 	return "quanly/pages/productioncompanys/edit_productioncompanys";
+	// }
+
+	// @PostMapping(value = "/updateProductioncompanys")
+	// public String updateProductioncompany(@ModelAttribute("updateproductioncompanys") Productioncompanys productioncompanys,
+    // @ModelAttribute("movieProductioncompanys") MovieProductioncompanys movieProductioncompanys){
+    //     Integer pcId = productioncompanys.getPcId();
+    //     movieProductioncompanys.setMpcId(pcId);
+        
+    //     Integer productionCompamyId = productioncompanys.getPcId();
+    //     movieProductioncompanys.setProductionCompanyId(productionCompamyId);
+	// 	adminProductioncompanysService2.updateProductioncompanys(productioncompanys);
+    //     adminMovieProductioncompanysService.updateMovieProductioncampanys(movieProductioncompanys);
+	// 	return "redirect:/admin/listproductioncompanys";
+	// }
+
+
     
 }

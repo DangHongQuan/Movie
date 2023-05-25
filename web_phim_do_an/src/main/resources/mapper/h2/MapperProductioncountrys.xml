@@ -5,8 +5,8 @@
 
 <mapper namespace="com.example.response.admin.AdminProductioncountrysRepository">
 
-    <resultMap id="productioncompanysResultMap" type="com.example.models.admin.Productioncountrys">
-        <id property="pcountryId" column="PCOUNTRY_ID " />
+    <resultMap id="productioncountrysResultMap" type="com.example.models.admin.Productioncountrys">
+        <id property="pcountryId" column="PCOUNTRY_ID" />
         <result property="iso31661" column="ISO_3166_1" />
         <result property="name" column="NAME" />
       
@@ -29,5 +29,14 @@
          (PCOUNTRY_ID, MOVIE_ID) 
 		VALUES (#{pcountryId}, #{movieId})
 	</insert>
-    
+
+  <select id="getAllProductioncountrys" resultMap="productioncountrysResultMap">
+  select * from productioncountrys
+  </select>
+
+   <delete id="deleteProductioncountrys" >
+    DELETE FROM productioncountrys
+    WHERE PCOUNTRY_ID = #{pcountryId}
+</delete>
+   
 </mapper>

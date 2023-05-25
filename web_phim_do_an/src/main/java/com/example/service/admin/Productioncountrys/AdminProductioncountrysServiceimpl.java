@@ -1,5 +1,7 @@
 package com.example.service.admin.Productioncountrys;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +45,16 @@ public class AdminProductioncountrysServiceimpl implements AdminProductioncountr
 
         adminProductioncountrysRepository.insertMovieProductioncountry(movieprodcutioncountry);
         return productioncontruyId;
+    }
+
+    @Override
+    public List<Productioncountrys> getAllProductioncountrys() {
+        return adminProductioncountrysRepository.getAllProductioncountrys();
+    }
+
+    @Override
+    public void deleteProductioncountrys(Integer id) {
+     adminProductioncountrysRepository.deleteProductioncountrys(id);
     }
 
    
