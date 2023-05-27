@@ -1,61 +1,75 @@
 <!DOCTYPE html>
-<html xmlns:th="www.thymeleaf.org">
-<head>
-<meta charset="ISO-8859-1">
-<title>Add Video</title>
-</head>
-<body>
-	<form action="/admin/video/add" method="post" th:object = "${video}">
-		<div>
-			<label>IOS 639 1</label>
-			<input type="text"/ th:field="*{iso6391}">
-		</div>
-		<div>
-			<label>ISO 3166 1</label>
-			<input type="text"/ th:field="*{iso31661}">
-		</div>
-		<div>
-			<label>Name</label>
-			<input type="text"/ th:field="*{name}">
-		</div>
-		<div>
-			<label>Key</label>
-			<input type="text" th:field="*{keyYt}"/>
-		</div>
-		<div>
-			<label>Site</label>
-			<input type="text"/ th:field="*{site}">
-		</div>
-		<div>
-			<label>Size</label>
-			<input type="text"/ th:field="*{size}">
-		</div>
-		<div>
-			<label>Type</label>
-			<input type="text"/ th:field="*{type}">
-		</div>
-		<div>
-			<label>Official</label>
-			<input type="text"/ th:field="*{official}">
-		</div>
-		<div>
-			<label>Published At</label>
-			<input type="date"/ th:field="*{publishedAt}">
-		</div>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{quanly/layouts/layouts}">
 
-		<select
-				class="form-select form-select-lg mb-3 border border-dark"
-				name="movieId">
-				<option selected>---Chon Tiêu Đề Phim---</option>
-				<option
-					th:object="${movieViedeo}"
-					th:each="data : ${list}" th:value="${data.movieId}"
-					th:text="${data.originalTitle}"
-					th:selected="${data.movieId == movieViedeo.movieId}"></option>
-			</select>
-		<div>
-			<button type="submit">Add Video</button>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Add Video</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-8">
+					<form action="/admin/video/add" method="post" th:object="${video}">
+						<h2 class="text-center text-dark">Thêm Mới Video</h2>
+						<label class="form-lable text-dark">Thêm Mới Tiêu Chuẩn (ISO 639-1)
+							<span class="text-danger">(*)</span> </label>
+						<input type="text" class="form-control border border-dark ps-4" th:field="*{iso6391}"
+							placeholder="Nhập Tên Tiêu Chuẩn" />
+						<label class="form-lable text-dark">Thêm Mới Tiêu Chuẩn (ISO 3166-1)
+							<span class="text-danger">(*)</span> </label>
+						<input type="text" class="form-control border border-dark ps-4" th:field="*{iso31661}"
+							placeholder="Nhập Tên Tiêu Chuẩn" />
+						<label class="form-lable text-dark">Thêm Mới Tên (Name)
+							<span class="text-danger">(*)</span> </label>
+						<input type="text" class="form-control border border-dark ps-4" th:field="*{name}"
+							placeholder="Nhập Tên Phim" />
+						<label class="form-lable text-dark">Thêm Mới Mã (Key)
+							<span class="text-danger">(*)</span> </label>
+						<input type="text" class="form-control border border-dark ps-4" th:field="*{keyYt}"
+							placeholder="Nhập Tên Mã" />
+						<label class="form-lable text-dark">Thêm Mới Website (Site)
+							<span class="text-danger">(*)</span> </label>
+						<input type="text" class="form-control border border-dark ps-4" th:field="*{site}"
+							placeholder="Nhập Tên Website" />
+						<label class="form-lable text-dark">Thêm Mới Size (Size)
+							<span class="text-danger">(*)</span> </label>
+						<input type="text" class="form-control border border-dark ps-4" th:field="*{size}"
+							placeholder="Nhập Tên Size" />
+						<label class="form-lable text-dark">Thêm Mới Type (Type)
+							<span class="text-danger">(*)</span> </label>
+						<input type="text" class="form-control border border-dark ps-4" th:field="*{type}"
+							placeholder="Nhập Tên Type" />
+						<div class="form-check  mt-3">
+							<label class="form-check-label text-dark" for="flexRadioDefault1" >
+                          	Official
+                        </label>
+                        <input class="form-check-input" type="radio"   th:field="*{official}"
+                          name="flexRadioDefault" id="flexRadioDefault1" value="0">
+                        
+                      </div>
+						
+						<div>
+							<label class="form-label text-dark">Published At</label>
+							<input type="date" class="form-control border border-dark ps-4"  th:field="*{publishedAt}"/>
+						</div>
+						<label class="form-lable text-dark">Title</label>
+						<select class="form-select form-select-lg mb-3 border border-dark" name="movieId">
+							<option selected>---Chon Tiêu Đề Phim---</option>
+							<option th:object="${movieViedeo}" th:each="data : ${list}" th:value="${data.movieId}"
+								th:text="${data.originalTitle}" th:selected="${data.movieId == movieViedeo.movieId}">
+							</option>
+						</select>
+						<div class="text-center">
+							<button type="submit" class="btn btn-primary">Add Video</button>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
-	</form>
+	</div>
 </body>
+
 </html>

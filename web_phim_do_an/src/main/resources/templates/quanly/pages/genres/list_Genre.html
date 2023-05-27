@@ -1,40 +1,43 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{quanly/layouts/layouts}">
-  <head>
-    <title>
-      Thêm mới Phim
-    </title>
-  </head>
-  <body>
-    <div layout:fragment="content">
-      <table class="table table-bordered table-hover table-responsive-sm">
-        <thead>
-          <th></th>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{quanly/layouts/layouts}">
 
-        </thead>
-        <tbody>
-          <!-- <td class="hidden" th:text="${item.movieId}"></td> -->
-          <tr th:each="item, state :${listGenres}">
-            <td th:text="${state.count}"></td>
-      
-            <td th:text="${item.name}"></td>
-        
+<head>
+	<title>
+		Thêm mới Phim
+	</title>
+</head>
 
+<body>
+	<div layout:fragment="content">
+		<table class="table table-bordered table-hover table-responsive-sm">
+			<thead>
+				<th>No.</th>
+				<th>Name</th>
+				<th></th>
 
-            <td><a th:href="@{/admin/editt/{id}(id= ${item.genreId})}"
-                class="btn btn-primary">Detail</a></td>
-            <td><a th:href="@{/admin/deletee/{id}(id= ${item.genreId})}"
-                class="btn btn-danger">Delete</a></td>
+			</thead>
+			<tbody>
+				<!-- <td class="hidden" th:text="${item.movieId}"></td> -->
+				<tr th:each="item, state :${listGenres}">
+					<td th:text="${state.count}"></td>
 
-
-          </tr>
-        </tbody>
-      </table>
+					<td th:text="${item.name}"></td>
 
 
 
-    </div>
-  </body>
+					<td><a th:href="@{/admin/editt/{id}(id= ${item.genreId})}" class="btn btn-primary ">Detail</a><a
+							th:href="@{/admin/deletee/{id}(id= ${item.genreId})}" class="btn btn-danger ms-2">Delete</a></td>
+					
+
+
+				</tr>
+			</tbody>
+		</table>
+
+
+
+	</div>
+</body>
+
 </html>

@@ -11,14 +11,35 @@
     <div layout:fragment="content">
       <table class="table table-bordered table-hover table-responsive-sm">
         <thead>
+          <th>No.</th>
+          <th>Adult</th>
+          <th>BackDrop Path</th>
+          <th>Belong to collection</th>
+          <th>Budget</th>
+          <th>HomePage</th>
+          <th>Imdb Id</th>
+          <th>Original Language</th>
+          <th>Original Title</th>
+          <th>OverView</th>
+          <th>Popularity</th>
+          <th>Poster Path</th>
+          <th>Release Date</th>
+          <th>Revenue</th>
+          <th>Runtime</th>
+          <th>Status</th>
+          <th>Tagline</th>
+          <th>Title</th>
+          <th>Video</th>
+          <th>Vote Average</th>
+          <th>Vote Count</th>
           <th></th>
+          
 
         </thead>
         <tbody>
           <!-- <td class="hidden" th:text="${item.movieId}"></td> -->
           <tr th:each="item, state :${movie}">
             <td th:text="${state.count}"></td>
-      
             <td th:text="${item.adult}"></td>
             <td th:text="${item.backdropPath}"></td>
             <td th:text="${item.belongsToCollection}"></td>

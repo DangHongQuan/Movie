@@ -1,25 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{quanly/layouts/layouts}">
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Add Spoken</title>
 	</head>
 	<body>
+		<div layout:fragment="content">
 		<form action="/admin/spoken/add" method="post" th:object="${spoken}">
+			<h2 class="text-center text-dark">Thêm Mới Spoken Languge</h2>
+              
 			<div>
-				<label>IOS 639 1</label>
-				<input type="text" th:field="*{iso6391}"/>
+				<label class="form-lable text-dark">IOS 639-1</label>
+				<input type="text" th:field="*{iso6391}" class="form-control border border-dark ps-4" placeholder="Nhập Tiêu Chuẩn"/>
+			</div>
+			
+			<div>
+				<label class="form-lable text-dark">English Name</label>
+				<input type="text" th:field="*{englishName}" class="form-control border border-dark ps-4" placeholder="Nhập Ngôn Ngữ"/>
 			</div>
 			<div>
-				<label>English Name</label>
-				<input type="text" th:field="*{englishName}"/>
+				<label class="form-lable text-dark">Name</label>
+				<input type="text" th:field="*{name}" class="form-control border border-dark ps-4" placeholder="Nhập Tên"/>
 			</div>
-			<div>
-				<label>Name</label>
-				<input type="text" th:field="*{name}" />
-			</div>
+			
 			<select
-				class="form-select form-select-lg mb-3 border border-dark"
+				class="form-select form-select-lg mb-3 border border-dark mt-3"
 				name="movieId">
 				<option selected>---Chon Tiêu Đề Phim---</option>
 				<option
@@ -29,9 +36,10 @@
 					th:selected="${data.movieId == movieSpokeLa.movieId}"></option>
 			</select>
 
-			<div>
-				<button type="submit">Add spoken</button>
+			<div class="text-center">
+				<button type="submit" class="btn btn-primary">Add spoken</button>
 			</div>
 		</form>
+		</div>
 	</body>
 </html>

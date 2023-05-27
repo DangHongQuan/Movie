@@ -18,13 +18,13 @@
               th:object="${updateproductioncountrys}"
               class="form-login">
               <input type="hidden" th:field="*{pcountryId}">
-              <h2 class="text-center text-dark"> </h2>
-              <label class="form-lable text-dark">
+              <h2 class="text-center text-dark"> Edit Production Country</h2>
+              <label class="form-lable text-dark">ISO 3166-1
                 <span class="text-danger">(*)</span> </label>
               <input type="text" class="form-control border border-dark ps-4"
                 th:field="*{iso31661}"
                 placeholder="Nhập Tên Thể Loại"/>
-              <label class="form-lable text-dark">
+              <label class="form-lable text-dark">Name
                 <span class="text-danger">(*)</span> </label>
               <input type="text" class="form-control border border-dark ps-4"
                 th:field="*{name}"
@@ -48,8 +48,7 @@
 
               </div>
               <div class="text-center mt-5">
-                <input type="submit" class="btn btn-success " value="Thêm
-                  Mới"/>
+                <input type="submit" class="btn btn-success " value="Save"/>
               </div>
 
             </form>

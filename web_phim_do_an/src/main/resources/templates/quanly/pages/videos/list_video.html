@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{quanly/layouts/layouts}">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-	<table>
+	<div layout:fragment="content">
+	<table class="table table-hover table-striped table-bordered">
 		<thead>
 			<tr>
 				<th>No.</th>
@@ -43,5 +45,6 @@
 			</tr>
 		</tbody>
 	</table>
+	</div>
 </body>
 </html>

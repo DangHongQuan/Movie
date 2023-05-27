@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="www.thymeleaf.org">
-<head>
-<meta charset="ISO-8859-1">
-<title>Add Spoken</title>
-</head>
-<body>
-	<form action="/admin/spoken/editspoken" method="post" th:object="${spoken}">
-		<input type="hidden" th:field="*{spolangId}"/>
-		<div>
-			<label>IOS 639 1</label>
-			<input type="text" th:field="*{iso6391}"/>
-		</div>
-		<div>
-			<label>English Name</label>
-			<input type="text" th:field="*{englishName}"/>
-		</div>
-		<div>
-			<label>Name</label>
-			<input type="text" th:field="*{name}" />
-		</div>
-
-		<div >
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{quanly/layouts/layouts}">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Add Spoken</title>
+	</head>
+	<body>
+		<div layout:fragment="content">
+		<form action="/admin/spoken/editspoken" method="post" th:object="${spoken}">
+			<h2 class="text-center text-dark">Chỉnh sửa Spoken Languge</h2>
+			<input type="hidden" th:field="*{spolangId}"/>
+              
+			<div>
+				<label class="form-lable text-dark">IOS 639-1</label>
+				<input type="text" th:field="*{iso6391}" class="form-control border border-dark ps-4" placeholder="Nhập Tiêu Chuẩn"/>
+			</div>
+			
+			<div>
+				<label class="form-lable text-dark">English Name</label>
+				<input type="text" th:field="*{englishName}" class="form-control border border-dark ps-4" placeholder="Nhập Ngôn Ngữ"/>
+			</div>
+			<div>
+				<label class="form-lable text-dark">Name</label>
+				<input type="text" th:field="*{name}" class="form-control border border-dark ps-4" placeholder="Nhập Tên"/>
+			</div>
+			
+			<div >
 			<label class="text-dark form-lable">Chọn Thể Loại Phim <span
 				class="text-danger">(*)</span> </label>
 
@@ -37,10 +43,11 @@
 			</select>
 
 		  </div>
-		
-		<div>
-			<button type="submit">Add spoken</button>
+
+			<div class="text-center">
+				<button type="submit" class="btn btn-primary">Save spoken</button>
+			</div>
+		</form>
 		</div>
-	</form>
-</body>
+	</body>
 </html>
