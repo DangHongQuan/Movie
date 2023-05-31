@@ -63,23 +63,23 @@
 
         </div>
 
-        <div class="row mb-2">
-          <div class="col-lg-6">
-            <label class="form-label text-dark">Ảnh Nền (backdrop_path):
-              <span class="text-danger">(*)</span> </label>
-            <input type="file" class="form-control border border-dark" />
-          </div>
-          <div class="col-lg-6">
-            <label class="form-label text-dark">Ảnh poster (poster_path):
-              <span class="text-danger">(*)</span> </label>
-            <input type="file" class="form-control border border-dark" />
-          </div>
-        </div>
+              <div class="row mb-2">
+                <div class="col-lg-6">
+                  <label class="form-label text-dark">Ảnh Nền (backdrop_path):
+                    <span class="text-danger">(*)</span> </label>
+                  <input type="text" class="form-control border border-dark" th:field="*{backdropPath}"/>
+                </div>
+                <div class="col-lg-6">
+                  <label class="form-label text-dark">Ảnh poster (poster_path):
+                    <span class="text-danger">(*)</span> </label>
+                  <input type="text" class="form-control border border-dark" th:field="*{posterPath}"/>
+                </div>
+              </div>
 
         <label class="form-label text-dark">Mô Tả(overview) <span
             class="text-danger">(*)</span> </label>
         <textarea rows="8" style="width: 100%;" name="overview"
-          th:value="${movie.overview}"></textarea>
+          th:field="${movie.overview}"></textarea>
 
         <div class="row mb-2">
           <div class="col-lg-6">

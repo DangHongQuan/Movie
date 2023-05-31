@@ -1,5 +1,6 @@
 package com.example.controller.Api;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,19 +12,34 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.models.MovieDetail;
+import com.example.models.MovieNow;
 import com.example.models.Video;
+
+import com.example.models.admin.Movie;
 import com.example.service.MovieService;
+import com.example.service.admin.Genres.AdminGenresService;
+import com.example.service.admin.Movie.AdminMovieService;
+import com.example.service.admin.MovieGenre.AdminMoveiGenreService;
+import com.example.service.admin.Video.VideoService;
 
 @Controller
 public class PlayMovieController {
 	 private final MovieService movieService;
-	 public PlayMovieController(MovieService movieService) {
+	 public PlayMovieController(MovieService movieService,AdminMovieService adminMovieService,VideoService service) {
 	        this.movieService = movieService;
+	        this.adminMovieService = adminMovieService;
+	        this.service = service;
 	    }
 
-	
-	
-	    
+//	 Phần Dữ liệu lấy từ database
+	 @Autowired
+		private AdminMoveiGenreService adminMoveiGenreService;
+		  private final AdminMovieService adminMovieService;
+		  private final VideoService service;
+		@Autowired
+		private AdminGenresService adminGenresService;
+	 
+//	 Kết thúc phần dữ liệu tạo từ database    
 	    private final String API_KEY = "e9e9d8da18ae29fc430845952232787c";
 	    private final String API_URL = "https://api.themoviedb.org/3/movie/";
 	@GetMapping("/playmovie/{id}")
@@ -43,6 +59,53 @@ public class PlayMovieController {
 		}catch (RestClientException e) {
 	        e.printStackTrace();
 	    }   
+		 List<Movie> movies = adminMovieService.listMovie(); 
+			model.addAttribute("moviess", movies);
+			
+			try {
+	            List<MovieNow> moviesss = movieService.getNowPlayingMovies(1);
+	            model.addAttribute("moviesss", moviesss);
+	           
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
 		return "users/pages/playmovie";
+	}
+	@GetMapping("/playmovie2/{movieId}")
+	public String getplay(@PathVariable Integer movieId , Model model) {
+		try {
+			// Lấy thông tin movie từ database dựa trên movieId
+		    Movie movie = adminMovieService.findMovieId(movieId);
+		    if (movie == null) {
+		        // Xử lý khi không tìm thấy movie
+		        return "error-page";
+		    }
+		    
+		
+		    // Lấy danh sách video dựa trên movieId
+		    List<com.example.models.admin.Video> videos = service.findVideoByMovieId(movieId);
+		    if (videos.isEmpty()) {
+		        // Xử lý khi không tìm thấy video
+		        return "error-page";
+		    }
+		    
+		    // Chọn một video để hiển thị (ví dụ: video đầu tiên)
+		    com.example.models.admin.Video video = videos.get(0);
+		    // Đưa thông tin movie và video vào model để truyền cho view
+		    model.addAttribute("movie", movie);
+		    model.addAttribute("video", video);
+		    List<Movie> movies = adminMovieService.listMovie(); 
+				model.addAttribute("movies", movies);
+		}catch (RestClientException e) {
+	        e.printStackTrace();
+	    } 
+		   try {
+	            List<MovieNow> moviess = movieService.getNowPlayingMovies(1);
+	            model.addAttribute("moviess", moviess);
+	           
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+		return "users/pages/playmovie2";
 	}
 }

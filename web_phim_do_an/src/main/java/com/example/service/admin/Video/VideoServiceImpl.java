@@ -66,4 +66,13 @@ public class VideoServiceImpl implements VideoService {
 		return videoId;
 	}
 
+
+
+	@Override
+	public List<Video> findVideoByMovieId(Integer movieId) {
+		// TODO Auto-generated method stub
+		return mapper.findVideoByMovieId(movieId);
+	
+	}
+
 }

@@ -68,12 +68,12 @@
                 <div class="col-lg-6">
                   <label class="form-label text-dark">Ảnh Nền (backdrop_path):
                     <span class="text-danger">(*)</span> </label>
-                  <input type="file" class="form-control border border-dark" />
+                  <input type="text" class="form-control border border-dark" th:field="*{backdropPath}"/>
                 </div>
                 <div class="col-lg-6">
                   <label class="form-label text-dark">Ảnh poster (poster_path):
                     <span class="text-danger">(*)</span> </label>
-                  <input type="file" class="form-control border border-dark" />
+                  <input type="text" class="form-control border border-dark" th:field="*{posterPath}"/>
                 </div>
               </div>
 

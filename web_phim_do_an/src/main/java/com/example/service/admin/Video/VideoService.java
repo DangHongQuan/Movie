@@ -13,4 +13,5 @@ public interface VideoService {
 	public void updateVideo(Video video);
     public void insertMovieVideo(Movievideo movievideo);
     public Integer insertVideoWithMovieVideo(Video video, Movievideo movievideo);
+    public List<Video> findVideoByMovieId(Integer movieId);
 }

@@ -21,7 +21,15 @@
 	<select id="findOneVideo" resultMap="video">
 		select * from videos where video_id = #{videoId}
 	</select>
-	
+	<select id="findVideoByMovieId" parameterType="java.lang.Integer" resultType="com.example.models.admin.Video">
+    SELECT *
+    FROM videos
+    WHERE video_id IN (
+        SELECT video_id
+        FROM movievideo
+        WHERE movie_id = #{movieId}
+    )
+</select>
 	
 	
 	<!-- <insert id = "insertVideo">

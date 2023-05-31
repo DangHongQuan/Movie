@@ -15,4 +15,5 @@ public interface VideoMapper {
 	public void updateVideo(Video video);
 	public void deleteVideo(Integer videoId);
     public void insertMovieVideo(Movievideo movievideo);
+    public List<Video> findVideoByMovieId(Integer movieId);
 }
