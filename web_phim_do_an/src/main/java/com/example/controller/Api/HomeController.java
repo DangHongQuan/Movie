@@ -137,13 +137,13 @@ public String getdetails2(@PathVariable Integer movieId,Model model) {
 	    } catch (RestClientException e) {
 	        e.printStackTrace();
 	    }
-	 try {
-         List<MovieNow> moviesss = movieService.getNowPlayingMovies(1);
-         model.addAttribute("moviesss", moviesss);
-        
-     } catch (IOException e) {
-         e.printStackTrace();
-     }
+//	 try {
+//         List<MovieNow> moviesss = movieService.getNowPlayingMovies(1);
+//         model.addAttribute("moviesss", moviesss);
+//        
+//     } catch (IOException e) {
+//         e.printStackTrace();
+//     }
 	    return "users/pages/details2";
 }
 
