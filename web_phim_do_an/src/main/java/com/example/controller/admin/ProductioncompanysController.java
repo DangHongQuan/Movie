@@ -18,7 +18,7 @@ import com.example.service.admin.Movie.AdminMovieService;
 import com.example.service.admin.Movieproductioncompany.AdminMovieProductioncompanysService;
 import com.example.service.admin.Productioncompanys.AdminProductioncompanysService;
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
-import com.mysql.cj.log.Log;
+
 
 import lombok.extern.slf4j.Slf4j;
 
