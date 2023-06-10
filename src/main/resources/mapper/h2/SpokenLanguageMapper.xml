@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.response.admin.SpokenLanguageMapper">
+	<resultMap type="com.example.models.admin.SpokenLanguage" id="spoken">
+		<id column="spolang_id" property="spolangId" />
+		<result column="iso_639_1" property="iso6391" />
+		<result column="english_name_" property="englishName" />
+		<result column="name" property="name" />
+	</resultMap>
+	<select id="findMany" resultType="com.example.models.admin.SpokenLanguage">
+		select * from spokenlanguages;
+	</select>
+	<select id="findOne" resultMap="spoken">
+		select * from spokenlanguages where spolang_id = #{spolangId}
+	</select>
+	<!--
+	<insert id = "insertSpoken">
+	INSERT INTO SPOKENLANGUAGES( iso_639_1, english_name_, name) VALUES( #{iso6391}, #{englishName}, #{name})
+	</insert>
+	-->
+	<insert id="insertSpoken" parameterType="com.example.models.admin.SpokenLanguage">
+		<selectKey keyProperty="spolangId" resultType="java.lang.Integer" order="AFTER">
+			SELECT LAST_INSERT_ID() as spolangId
+		</selectKey>
+		INSERT INTO SPOKENLANGUAGES( iso_639_1, english_name_, name) VALUES( #{iso6391}, #{englishName}, #{name})
+	</insert>
+	<insert id="insertMovieSpLa">
+		INSERT INTO moviespokenlanguages
+		(MOVIE_ID , SPOLANG_ID  )
+		VALUES (#{movieId}, #{spolangId})
+	</insert>
+	<update id="updateSpoken">
+		update spokenlanguages set iso_639_1 = #{iso6391}, english_name_ = #{englishName}, name = #{name}
+		where spolang_id = #{spolangId}
+	</update>
+	<delete id="deleteSpoken">
+		delete from spokenlanguages where spolang_id = #{spolangId}
+	</delete>
+</mapper>

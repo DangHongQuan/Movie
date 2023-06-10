@@ -1,0 +1,39 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{quanly/layouts/layouts}">
+  <head>
+    <title>
+      Thêm mới Phim
+    </title>
+  </head>
+  <body>
+    <div layout:fragment="content">
+      <table class="table table-bordered table-hover table-responsive-sm">
+        <thead>
+          <th></th>
+
+        </thead>
+        <tbody>
+
+          <tr th:each="item: ${spoken}">
+            <td th:text="${item.spolangId}"></td>
+            <td th:text="${item.iso6391}"></td>
+            <td th:text="${item.englishName}"></td>
+            <td th:text="${item.name}"></td>
+
+            <td><a
+                th:href="@{/admin/spoken/editspoken/{id}(id= ${item.spolangId})}"
+                class="btn btn-primary">Detail</a></td>
+            <td><a
+                th:href="@{/admin/spoken/deletespoke/{id}(id= ${item.spolangId})}"
+                class="btn btn-danger">Delete</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </body>
+</html>

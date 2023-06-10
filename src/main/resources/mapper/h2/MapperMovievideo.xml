@@ -1,0 +1,16 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.response.admin.AdminMovievideoRepository">
+	<resultMap id="genresResultMap" type="com.example.models.admin.Movievideo">
+		<id property="mvId" column="MV_ID" />
+		<result property="movieId" column="MOVIE_ID" />
+		<result property="videoId" column="VIDEO_ID" />
+
+	</resultMap>
+
+	<update id="updateMovieVideo" parameterType="com.example.models.admin.Movievideo">
+		UPDATE movievideo
+		SET MOVIE_ID = #{movieId}
+		WHERE VIDEO_ID = #{videoId}
+	</update>
+	
+</mapper>

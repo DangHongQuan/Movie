@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{quanly/layouts/layouts}">
+  <head>
+    <title>
+      Thêm mới Phim
+    </title>
+  </head>
+  <body>
+    <div layout:fragment="content">
+      <table class="table table-bordered table-hover table-responsive-sm">
+        <thead>
+          <th>No.</th>
+          <th>Adult</th>
+          <th>BackDrop Path</th>
+          <!--  <th>Belong to collection</th>-->
+          <th>Budget</th>
+           <!--<th>HomePage</th>-->
+          <th>Imdb Id</th>
+          <!--  <th>Original Language</th>-->
+          <th>Original Title</th>
+          <th>OverView</th>
+          <th>Popularity</th>
+          <th>Poster Path</th>
+          <th>Release Date</th>
+          <th>Revenue</th>
+          <th>Runtime</th>
+          <th>Status</th>
+          <th>Tagline</th>
+          <th>Title</th>
+          <th>Video</th>
+          <th>Vote Average</th>
+          <th>Vote Count</th>
+          <th></th>
+          
+
+        </thead>
+        <tbody>
+          <!-- <td class="hidden" th:text="${item.movieId}"></td> -->
+          <tr th:each="item, state :${movie}">
+            <td th:text="${state.count}"></td>
+            <td th:text="${item.adult}"></td>
+            <td th:text="${item.backdropPath}"></td>
+            <!--  <td th:text="${item.belongsToCollection}"></td>-->
+            <td th:text="${item.budget}"></td>
+            <!-- <td th:text="${item.homePage}"></td>-->
+            <td th:text="${item.imdbId}"></td>
+            <!--  <td th:text="${item.originalLanguage}"></td>-->
+            <td th:text="${item.originalTitle}"></td>
+           <td class="limit-text" th:text="${item.overview}"></td>
+            <td th:text="${item.popularity}"></td>
+            <td th:text="${item.posterPath}"></td>
+            <td th:text="${item.releaseDate}"></td>
+            <td th:text="${item.revenue}"></td>
+            <td th:text="${item.runtime}"></td>
+            <td th:text="${item.status}"></td>
+            <td th:text="${item.tagline}"></td>
+            <td th:text="${item.title}"></td>
+            <td th:text="${item.video}"></td>
+            <td th:text="${item.voteAverage}"></td>
+            <td th:text="${item.voteCount}"></td>
+				
+
+            <td><a th:href="@{/admin/edit/{id}(id= ${item.movieId})}"
+                class="btn btn-primary">Detail</a></td>
+            <td><a th:href="@{/admin/delete/{id}(id= ${item.movieId})}"
+                class="btn btn-danger">Delete</a></td>
+
+
+          </tr>
+        </tbody>
+      </table>
+		<!-- Chỉnh sửa dòng item.overview để rớt dòng -->
+		<style>
+.limit-text {
+    max-width: 300px; /* Độ rộng tối đa của cột */
+    white-space: nowrap; /* Ngăn không cho văn bản xuống dòng */
+    overflow: hidden; /* Ẩn phần văn bản vượt quá độ dài */
+    text-overflow: ellipsis; /* Thêm dấu chấm cuối để chỉ ra rằng văn bản bị cắt */
+}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var limitTextElements = document.getElementsByClassName("limit-text");
+    for (var i = 0; i < limitTextElements.length; i++) {
+        var element = limitTextElements[i];
+        if (element.scrollWidth > element.offsetWidth) {
+            element.setAttribute("title", element.innerText);
+        }
+    }
+});
+</script>
+
+		
+
+
+    </div>
+  </body>
+</html>

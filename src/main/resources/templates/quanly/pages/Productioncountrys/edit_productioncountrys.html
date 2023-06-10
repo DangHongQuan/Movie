@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{quanly/layouts/layouts}">
+  <head>
+    <title>
+      Thêm Mới Công Ty
+    </title>
+  </head>
+  <body>
+    <div layout:fragment="content">
+
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <form method="post"
+              action="/admin/updateProductioncountrys"
+              th:object="${updateproductioncountrys}"
+              class="form-login">
+              <input type="hidden" th:field="*{pcountryId}">
+              <h2 class="text-center text-dark"> Edit Production Country</h2>
+              <label class="form-lable text-dark">ISO 3166-1
+                <span class="text-danger">(*)</span> </label>
+              <input type="text" class="form-control border border-dark ps-4"
+                th:field="*{iso31661}"
+                placeholder="Nhập Tên Thể Loại"/>
+              <label class="form-lable text-dark">Name
+                <span class="text-danger">(*)</span> </label>
+              <input type="text" class="form-control border border-dark ps-4"
+                th:field="*{name}"
+                placeholder="Nhập Tên Thể Loại"/>
+              
+              <div class="col-lg-4">
+                <label class="text-dark form-lable">Chọn Thể Loại Phim <span
+                    class="text-danger">(*)</span> </label>
+
+                <select
+                  class="form-select form-select-lg mb-3 border border-dark"
+                  name="movieId">
+                  <option selected>---Chon Tiêu Đề Phim---</option>
+                  <option
+                    th:object="${movieprodcutioncountry}" 
+                    th:each="data : ${listMovie}" th:value="${data.movieId}"
+                    th:text="${data.originalTitle}"
+                    th:selected="${data.movieId == movieprodcutioncountry.movieId}"
+                    ></option>
+                </select>
+
+              </div>
+              <div class="text-center mt-5">
+                <input type="submit" class="btn btn-success " value="Save"/>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

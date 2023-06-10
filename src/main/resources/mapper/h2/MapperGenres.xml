@@ -1,0 +1,28 @@
+<!-- movie_mapper.xml -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.response.admin.AdminGenresRepository">
+	<resultMap id="genresResultMap" type="com.example.models.admin.Genres">
+		<id property="genreId" column="genre_id" />
+		<result property="name" column="NAME" />
+	</resultMap>
+	<delete id="deleteGenre">
+		<!-- delete from moviegenres where genre_id = #{genreId}; -->
+		delete from genres where genre_id = #{genreId};
+	</delete>
+	<insert id="insertGenre" parameterType="com.example.models.admin.Genres">
+		INSERT INTO genres ( name)
+		VALUES ( #{name})
+	</insert>
+	<select id="getAllGenre" resultMap="genresResultMap">
+		select * from genres
+	</select>
+	<update id="capnhatGenres" parameterType="com.example.models.admin.Genres">
+		UPDATE genres
+		SET NAME = #{name}
+		WHERE genre_id = #{genreId}
+	</update>
+	<select id="findGenresId" resultMap="genresResultMap">
+		select * from genres where genre_id = #{genreId}
+	</select>
+	<!-- Add more SQL queries as needed -->
+</mapper>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{quanly/layouts/layouts}">
+  <head>
+    <title>
+      Thêm mới Phim
+    </title>
+  </head>
+  <body>
+    <div layout:fragment="content">
+		<h2 class="text-center">List Production Country</h2>
+      <table class="table table-bordered table-hover table-responsive-sm">
+        <thead>
+          <th>No.</th>
+          <th>ISO 3166-1</th>
+          <th>Name</th>
+          <th></th>
+
+        </thead>
+        <tbody>
+          <tr th:each="item, state :${productionCountrys}">
+            <td th:text="${state.count}"></td>
+           
+            <td th:text="${item.iso31661}"></td>
+            <td th:text="${item.name}"></td>
+           
+
+
+            <td><a th:href="@{/admin/editproductioncountrys/{id}(id= ${item.pcountryId})}"
+                class="btn btn-primary">Detail</a></td>
+            <td><a th:href="@{/admin/deleteproductioncountrys/{id}(id= ${item.pcountryId})}"
+                class="btn btn-danger">Delete</a></td>
+
+
+          </tr>
+        </tbody>
+      </table>
+
+
+
+    </div>
+  </body>
+</html>

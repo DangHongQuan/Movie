@@ -1,0 +1,45 @@
+<!-- movie_mapper.xml -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.response.admin.AdminProductioncompanysRepository">
+	<resultMap id="productioncompanysResultMap" type="com.example.models.admin.Productioncompanys">
+		<id property="pcId" column="PRODUCTION_COMPANY_ID_" />
+		<result property="logoPath" column="LOGO_PATH_" />
+		<result property="name" column="NAME_" />
+		<result property="originCountry" column="ORIGIN_COUNTRY_" />
+	</resultMap>
+	<!--
+	<insert id="insertProductionCompanys" parameterType="com.example.models.admin.Productioncompanys">
+	INSERT INTO PRODUCTIONCOMPANYS (LOGO_PATH_, NAME_, ORIGIN_COUNTRY_)
+	VALUES (#{logoPath}, #{name}, #{originCountry})
+	</insert>
+	-->
+	<insert id="insertProductionCompanys" parameterType="com.example.models.admin.Productioncompanys">
+		<selectKey keyProperty="pcId" resultType="java.lang.Integer" order="AFTER">
+			SELECT LAST_INSERT_ID() as pcId
+		</selectKey>
+		INSERT INTO PRODUCTIONCOMPANYS (LOGO_PATH_, NAME_, ORIGIN_COUNTRY_)
+		VALUES (#{logoPath}, #{name}, #{originCountry})
+	</insert>
+	<insert id="insertMovieProductionCompanys">
+		INSERT INTO movieproductioncompany
+		(PRODUCTION_COMPANY_ID_, MOVIE_ID)
+		VALUES (#{productionCompanyId}, #{movieId})
+	</insert>
+	<select id="getAllProductioncompanys" resultMap="productioncompanysResultMap">
+		select * from productioncompanys
+	</select>
+	<delete id="deleteProductionCompanies">
+		DELETE FROM productioncompanys
+		WHERE PRODUCTION_COMPANY_ID_=#{pcId};
+	</delete>
+	<update id="updateProductionCompanies">
+		UPDATE productioncompanys
+		SET LOGO_PATH_ = #{logoPath}, NAME_ = #{name}, ORIGIN_COUNTRY_ = #{originCountry}
+		WHERE PRODUCTION_COMPANY_ID_ = #{pcId};
+	</update>
+	<select id="findProductionCompayns" resultMap="productioncompanysResultMap">
+		SELECT *
+		FROM productioncompanys
+		WHERE PRODUCTION_COMPANY_ID_ = #{pcId};
+	</select>
+</mapper>

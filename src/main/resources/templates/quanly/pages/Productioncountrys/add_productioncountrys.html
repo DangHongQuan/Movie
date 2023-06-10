@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{quanly/layouts/layouts}">
+  <head>
+    <title>
+      Thêm Thể Loại
+    </title>
+  </head>
+  <body>
+    <div layout:fragment="content">
+
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <form method="post"
+              action="/admin/adminProductioncountrys"
+              th:object="${productioncountrys}"
+              class="form-login">
+              <h2 class="text-center text-dark">Thêm Mới Quốc Gia Sản Xuất</h2>
+              <label class="form-lable text-dark"> ISO 3166-1
+                <span class="text-danger">(*)</span> </label>
+              <input type="text" class="form-control border border-dark ps-4"
+                th:field="*{iso31661}"
+                placeholder="Nhập Tên Tiêu chuẩn"/>
+              <label class="form-lable text-dark">Name
+                <span class="text-danger">(*)</span> </label>
+              <input type="text" class="form-control border border-dark ps-4"
+                th:field="*{name}"
+                placeholder="Nhập Tên "/>
+              <select
+                class="form-select form-select-lg mb-3 border border-dark mt-5"
+                name="movieId">
+                <option selected>---Chon Tiêu Đề Phim---</option>
+                <option
+                  th:object="${prodcutioncountry}"
+                  th:each="data : ${listMovieProductioncountry}" th:value="${data.movieId}"
+                  th:text="${data.originalTitle}"
+                  th:selected="${data.movieId == prodcutioncountry.movieId}"></option>
+              </select>
+              <div class="text-center mt-5">
+                <input type="submit" class="btn btn-success " value="Thêm
+                  Mới"/>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

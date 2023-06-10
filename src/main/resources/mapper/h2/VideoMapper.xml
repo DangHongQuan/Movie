@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.response.admin.VideoMapper">
+	<resultMap id = "video" type = "com.example.models.admin.Video">
+		<id column = "video_id" property = "videoId"/>
+		<result column = "iso_639_1" property = "iso6391"/>
+		<result column = "iso_3166_1" property = "iso31661"/>
+		<result column = "name" property = "name"/>
+		<result column = "key_yt" property = "keyYt"/>
+		<result column = "site" property = "site"/>
+		<result column = "size" property = "size"/>
+		<result column = "type" property = "type"/>
+		<result column = "official" property = "official"/>
+		<result column = "published_at" property = "publishedAt"/>
+	</resultMap>
+	
+	<select id="findAllVideo" resultType="com.example.models.admin.Video">
+		select * from videos
+	</select>
+	
+	<select id="findOneVideo" resultMap="video">
+		select * from videos where video_id = #{videoId}
+	</select>
+	<select id="findVideoByMovieId" parameterType="java.lang.Integer" resultType="com.example.models.admin.Video">
+    SELECT *
+    FROM videos
+    WHERE video_id IN (
+        SELECT video_id
+        FROM movievideo
+        WHERE movie_id = #{movieId}
+    )
+</select>
+	
+	
+	<!-- <insert id = "insertVideo">
+		insert into videos(video_id, iso_639_1, iso_3166_1, name, key_yt, site, size, type, official, published_at)
+		 values (#{videoId}, #{iso6391}, #{iso31661}, #{name}, #{keyYt}, #{site}, #{size}, #{type}, #{official}, #{publishedAt});
+	</insert> -->
+
+	<insert id="insertVideo" parameterType="com.example.models.admin.Video">
+		<selectKey keyProperty="videoId" resultType="java.lang.Integer" order="AFTER">
+			SELECT LAST_INSERT_ID() as videoId
+		</selectKey>
+		insert into videos(video_id, iso_639_1, iso_3166_1, name, key_yt, site, size, type, official, published_at)
+		 values (#{videoId}, #{iso6391}, #{iso31661}, #{name}, #{keyYt}, #{site}, #{size}, #{type}, #{official}, #{publishedAt});
+	</insert>
+	<insert id="insertMovieVideo">	
+		INSERT INTO movievideo
+		(MOVIE_ID , VIDEO_ID   )
+		VALUES (#{movieId}, #{videoId})
+	</insert>
+	
+	<update id ="updateVideo">
+		update videos set iso_639_1 = #{iso6391}, iso_3166_1 = #{iso31661}, name = #{name},
+		key_yt = #{keyYt}, site = #{site}, size = #{size}, type = #{type}, official = #{official}, published_at = #{publishedAt} where video_id = #{videoId};
+	</update>
+	
+	<delete id = "deleteVideo">
+		delete from videos where video_id = #{videoId}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{quanly/layouts/layouts}">
+  <head>
+    <title>
+      Thêm mới Phim
+    </title>
+  </head>
+  <body>
+    <div layout:fragment="content">
+      <table class="table table-bordered table-hover table-responsive-sm">
+        <thead>
+          <th>No.</th>
+          <th>URL Logo</th>
+          <th>Name</th>
+          <th>Country</th>
+          <th></th>
+
+        </thead>
+        <tbody>
+          <!-- <td class="hidden" th:text="${item.movieId}"></td> -->
+          <tr th:each="item, state :${productioncompanys}">
+            <td th:text="${state.count}"></td>
+            <td th:text="${item.logoPath}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.originCountry}"></td>
+
+
+            <td><a th:href="@{/admin/editproductioncompanys/{id}(id= ${item.pcId})}"
+                class="btn btn-primary">Detail</a></td>
+            <td><a th:href="@{/admin/deleteproductioncompanys/{id}(id= ${item.pcId})}"
+                class="btn btn-danger">Delete</a></td>
+
+
+          </tr>
+        </tbody>
+      </table>
+
+
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{quanly/layouts/layouts}">
+  <head>
+    <title>
+     Edit Movie
+    </title>
+  </head>
+  <body>
+    <div layout:fragment="content">
+        <form
+        method="post"
+        action="/admin/capnhat"
+        th:object="${updateGenres}"
+        class="form-login"
+      >
+      <input type="text" hidden th:field="*{genreId}">
+      <h2 class="text-center text-dark">Edit Genre</h2>
+      <label class="form-lable text-dark">Name
+        <span class="text-danger">(*)</span> </label>
+      <input type="text" class="form-control border border-dark ps-4"  th:field="*{name}"
+        placeholder="Nhập Tên Của Bộ Phim Ra Mắt"/>
+      
+      <div class="text-center mt-5">
+        <input type="submit" class="btn btn-success " value="Save"/>
+      </div>
+      </form>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{quanly/layouts/layouts}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div layout:fragment="content">
+	<table class="table table-hover table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>No.</th>
+				<th>ISO 639_1</th>
+				<th>ISO 3166_1</th>
+				<th>Name</th>
+				<th>Key</th>
+				<th>Site</th>
+				<th>Size</th>
+				<th>Type</th>
+				<th>Official</th>
+				<th>Published At</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="item: ${video}">
+				<td th:text="${item.videoId}"></td>
+				<td th:text="${item.iso6391}"></td>
+				<td th:text="${item.iso31661}"></td>
+				<td th:text="${item.name}"></td>
+				<td th:text="${item.keyYt}"></td>
+				<td th:text="${item.site}"></td>
+				<td th:text="${item.size}"></td>
+				<td th:text="${item.type}"></td>
+				<td th:text="${item.official}"></td>
+				<td th:text="${item.publishedAt}"></td>
+
+
+				<td><a
+					th:href="@{/admin/video/editvideo/{id}(id= ${item.videoId})}"
+					class="btn btn-primary">Detail</a></td>
+				<td><a
+					th:href="@{/admin/video/deletevideo/{id}(id= ${item.videoId})}"
+					class="btn btn-danger">Delete</a></td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!-- movie_mapper.xml -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.response.admin.AdminMovieGenreReoisitory">
+	<resultMap id="genresResultMap" type="com.example.models.admin.MovieGenre">
+		<id property="mgId" column="mg_id" />
+		<result property="movieId" column="movie_id" />
+		<result property="genreId" column="genre_id" />
+	</resultMap>
+	<delete id="deleteMovieGenre">
+		DELETE FROM moviegenre
+		WHERE genre_id = #{genreId};
+	</delete>
+	<update id="updateMoveiGenreEdit" parameterType="com.example.models.admin.MovieGenre">
+		UPDATE moviegenre
+		SET genre_id = #{genreId}
+		WHERE movie_id = #{movieId}
+	</update>
+</mapper>

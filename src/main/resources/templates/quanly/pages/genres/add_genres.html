@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{quanly/layouts/layouts}">
+  <head>
+    <title>
+      Thêm Thể Loại
+    </title>
+  </head>
+  <body>
+    <div layout:fragment="content">
+     
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <form method="post" 
+           
+            action="/admin/admingenre"
+            th:object="${genre}"
+            class="form-login">
+              <h2 class="text-center text-dark">Thêm Mới Thể loại</h2>
+              <label class="form-lable text-dark">Thêm Mới Thể Loại Phim (namne)
+                <span class="text-danger">(*)</span> </label>
+            <input type="text" class="form-control border border-dark ps-4"  th:field="*{name}"
+                placeholder="Nhập Tên Thể Loại"/>
+             
+              <div class="text-center mt-5">
+                <input type="submit" class="btn btn-success " value="Thêm
+                  Mới"/>
+              </div> 
+
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </body>
+</html>

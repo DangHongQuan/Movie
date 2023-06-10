@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{quanly/layouts/layouts}">
+  <head>
+    <title>
+      Edit Movie
+    </title>
+  </head>
+  <body>
+    <div layout:fragment="content">
+      <form
+        method="post"
+        action="/admin/updateProductioncompanys"
+        th:object="${updateproductioncompanys}"
+        class="form-login">
+        <input type="hidden"  th:field="*{pcId}">
+        <h2 class="text-center text-dark">Edit ProductionCompany</h2>
+        <label class="form-lable text-dark">URL Logo
+          <span class="text-danger">(*)</span> </label>
+        <input type="text" class="form-control border border-dark ps-4"
+          th:field="*{logoPath}"
+          placeholder="Nhập Tên Của Bộ Phim Ra Mắt" />
+        <label class="form-lable text-dark">Name
+          <span class="text-danger">(*)</span> </label>
+        <input type="text" class="form-control border border-dark ps-4"
+          th:field="*{name}"
+          placeholder="Nhập Tên Của Bộ Phim Ra Mắt" />
+        <label class="form-lable text-dark">Quốc gia
+          <span class="text-danger">(*)</span> </label>
+        <input type="text" class="form-control border border-dark ps-4"
+          th:field="*{originCountry}"
+          placeholder="Nhập Tên Của Bộ Phim Ra Mắt" />
+
+        
+          <div class="col-lg-4">
+            <label class="text-dark form-lable">Chọn Thể Loại Phim <span
+                class="text-danger">(*)</span> </label>
+
+            <select class="form-select form-select-lg mb-3 border border-dark"
+              name="movieId">
+              <option selected>---Thể Loại Phim---</option>
+              <option th:object="${productioncompanys}"
+                th:each="data : ${listMovie}" th:value="${data.movieId}"
+                th:text="${data.movieId}"
+                th:selected="${data.movieId == productioncompanys.movieId}"></option>
+            </select>
+
+          </div>
+        
+      
+
+        <div class="text-center">
+          <input type="submit" class="btn btn-success " value="Save" />
+        </div>
+      </form>
+    </body>
+  </html>
